@@ -12,7 +12,12 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        'beans-bg-image': "url('/bg_beans.jpg')",
       },
+      colors: {
+        'brand-pink': '#e47174',
+        'brand-dark-pink': '#c15357',      
+      }
     },
   },
   plugins: [],
