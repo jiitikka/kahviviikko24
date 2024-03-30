@@ -13,6 +13,7 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         'beans-bg-image': "url('/bg_beans.jpg')",
+        'cups-bg-image': "url('/bg_cups_red_overlay.png')",
       },
       colors: {
         'brand-pink': '#e47174',

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Organizers = () => {
   return (
-    <div>Organizers</div>
+    <div className='h-screen bg-red-200'>Organizers</div>
   )
 }
 
