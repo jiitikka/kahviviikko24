@@ -24,10 +24,12 @@ const About = () => {
             <p>
               Epäkantiskortti on kanta-asiakaskortin vastakohta: saat leimoja kun kierrät eri kahviloita. Kaava on helppo:
             </p>
-            <li> Mene kahvilaan ja osta kahvijuoma </li>
-            <li> Ostetusta kahvista saat passiisi leiman </li>
-            <li>Toista sama eri kahviloissa</li>
-            <li>Joka viides kahvi on ilmainen</li>
+            <ul>
+              <li> Mene kahvilaan ja osta kahvijuoma </li>
+              <li> Ostetusta kahvista saat passiisi leiman </li>
+              <li>Toista sama eri kahviloissa</li>
+              <li>Joka viides kahvi on ilmainen</li>
+            </ul>
             <p>
               Passi on voimassa vielä viikon varsinaisen 
               kahviviikon päättymisen jälkeen eli su 22.4. asti.

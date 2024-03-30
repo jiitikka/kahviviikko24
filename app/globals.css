@@ -14,9 +14,10 @@
 
 body {
   color: rgb(var(--foreground-rgb));
+  font-family: "FreightText Pro";
 }
 
-p {
+p, li {
   font-family: "FreightText Pro";
   font-size: 1rem;
   font-style: normal;
@@ -24,7 +25,7 @@ p {
 }
 
 h1, h2, h3, h4 {
-  font-family: "Bebas Neue";
+  font-family: var(--bebas-neue-font);
 }
 
 h1 {
