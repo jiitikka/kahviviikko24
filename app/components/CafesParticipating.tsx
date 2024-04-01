@@ -24,7 +24,7 @@ const CafesParticipating = () => {
 
   const heading1 = "Mukana olevat kahvilat";
   const heading2 = "Epäkantiskortti käy näissä kahviloissa";
-  const description = "Kahviviikossa mukana on joukko loistavia Tampereen seudun kahviloita. Kaikille yhteistä on intohimoinen suhde asiakkaidensa palvelemiseen, ja tarjolla oleva laadukas pienpaahtimokahvi. Pääosa kahviloista sijaitsee Tampereen kantakaupungin alueella, muta mahtuupa joukkoon myös kahvilat Lielahdesta ja Lempäälästä sekä kaksi kahvilaa Pirkkalasta!";
+  const description = "Kahviviikossa mukana on joukko loistavia Tampereen seudun kahviloita. Kaikille yhteistä on intohimoinen suhde asiakkaidensa palvelemiseen, ja tarjolla oleva laadukas pienpaahtimokahvi. Pääosa kahviloista sijaitsee Tampereen kantakaupungin alueella, mutta mahtuupa joukkoon myös kahvilat Lielahdesta ja Lempäälästä sekä Pirkkalasta!";
 
   return (
     <div className='z-0 bg-beans-bg-image bg-cover bg-fixed relative' id="cafes">

@@ -6,7 +6,7 @@ const Footer = () => {
       <p>Yhteydenotot: tampereenkahviviikko(at)gmail.com</p>
       <p>Taustakuvat: Unsplash</p>
       <p>© Jani Tikka/Tampereen kahviviikko 2024</p>
-      <a className='flex justify-center align-middle items-center h-8 w-8 border-2 rounded-full hover:bg-white hover:text-brand-pink' href='#hero'> ⬆ </a>
+      <a className='flex justify-center align-middle items-center h-8 py-1 px-4 border-2 rounded-full hover:bg-white hover:text-brand-pink' href='#hero'> Ylös ⬆ </a>
     </div>
   )
 }
