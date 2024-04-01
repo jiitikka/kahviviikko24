@@ -16,7 +16,7 @@ export default function Home() {
       <About/>
       <CafesParticipating/>
       <EventTimeline/>
-      <Organizers/>
+      {/* <Organizers/> */}
       <Footer/>
     </main>
   );

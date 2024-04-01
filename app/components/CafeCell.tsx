@@ -10,7 +10,7 @@ interface Props {
 
 const CafeCell = (props: Props) => {
   return (
-    <a href={props.href} className='bg-white h-[144px] w-[144px] lg:h-[180px] lg:w-[180px] hover:drop-shadow-md hover:border'>
+    <a href={props.href} className='bg-white h-[180px] w-[180px] xs lg:h-[180px] lg:w-[180px] hover:drop-shadow-md hover:border'>
         <Image src={props.src} alt={props.alt} height={200} width={200} style={{objectFit: "contain"}} />
     </a>
   )

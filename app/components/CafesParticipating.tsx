@@ -1,5 +1,6 @@
 import React from 'react'
 import CafeCell from './CafeCell'
+import SideHeading from './SideHeading';
 
 const CafesParticipating = () => {
   const listOfCafes = [["/cafes/asema_logo.png", "Aseman kahvila logo", "https://www.asemankahvilatampere.fi/"], 
@@ -21,22 +22,22 @@ const CafesParticipating = () => {
   const cafes = listOfCafes.map((cafe, index) => 
   <CafeCell key={index} alt={cafe[1]} src={cafe[0]} href={cafe[2]} />);
 
+  const heading1 = "Mukana olevat kahvilat";
+  const heading2 = "Epäkantiskortti käy näissä kahviloissa";
+  const description = "Kahviviikossa mukana on joukko loistavia Tampereen seudun kahviloita. Kaikille yhteistä on intohimoinen suhde asiakkaidensa palvelemiseen, ja tarjolla oleva laadukas pienpaahtimokahvi. Pääosa kahviloista sijaitsee Tampereen kantakaupungin alueella, muta mahtuupa joukkoon myös kahvilat Lielahdesta ja Lempäälästä sekä kaksi kahvilaa Pirkkalasta!";
+
   return (
-    <div className='z-0 bg-beans-bg-image bg-cover bg-fixed relative'>
+    <div className='z-0 bg-beans-bg-image bg-cover bg-fixed relative' id="cafes">
       <div className='z-0 bg-white opacity-80 bg-blend-lighten h-full w-full absolute'></div>
-      <div className='z-10 flex flex-row flex-wrap gap-x-6	gap-y-6 lg:gap-16 text-black p-4 md:p-10'>
-        <div className='z-10 flex-initial max-w-96 flex flex-col gap-x-4	gap-y-4'>
-          <h1 className='z-10 flex-initial max-w-96 text-6xl md:text-8xl drop-shadow-sm'>Mukana olevat kahvilat</h1>
-          <div className='flex-initial max-w-96 flex flex-col gap-x-4	gap-y-4'>
-            <h2 className='text-black'>Epäkantiskortti käy näissä kahviloissa</h2>
-              <p className='text-black'>
-                Kahviviikossa mukana on joukko loistavia Tampereen seudun kahviloita. Kaikille yhteistä on intohimoinen suhde 
-                asiakkaidensa palvelemiseen, ja tarjolla oleva laadukas pienpaahtimokahvi. Pääosa kahviloista sijaitsee Tampereen 
-                kantakaupungin alueella, muta mahtuupa joukkoon myös kahvilat Lielahdesta ja Lempäälästä sekä kaksi kahvilaa Pirkkalasta!
-              </p>
-          </div>
-        </div>
-        <div className='z-10 flex flex-row w-full flex-wrap md:w-2/3'>
+      <div className='z-10 flex flex-row flex-wrap gap-6 lg:gap-16 text-black p-4 md:p-10'>
+        <SideHeading
+            heading1={heading1}
+            heading2={heading2}
+            description={description}
+            isDesc={true}
+          />
+
+        <div className='z-10 flex flex-row justify-center gap-1 flex-wrap w-full lg:basis-4/6 content-center'>
           {cafes}
         </div>
       </div>
