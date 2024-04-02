@@ -3,10 +3,10 @@ import SideHeading from './SideHeading'
 import OrganizerPerson from './OrganizerPerson'
 
 const listOfOrganizers = [
-  ["Jani Tikka", "Lorem Ipsum", "/bg_beans.jpg"], 
-  ["Pekka Heinonen", "Lorem Ipsum", "/epakantiskortti.png"], 
-  ["Joel Marttala", "Lorem Ipsum", "/epakantiskortti.png"], 
-  ["Niina Varjoranta", "Lorem Ipsum", "/epakantiskortti.png"]
+  ["Jani Tikka", "Jani työs­kentelee IT-alalla mutta hänen sydämensä sykkii hyville kahveille. Jani harrastaa kahveja, ja hänen kotoaan löytyykin jos jonkinlaista välineistöä kahviin liittyen.", "/bg_beans.jpg"], 
+  ["Pekka Heinonen", "Pekka on pitkän linjan barista, joka työskentelee Pirkan­maan Paahtimolla. Hänellä on koke­musta niin kahvilan pitämisestä, kahvin paahtamisesta kuin myös kahvi­alan kilpailuista.", "/epakantiskortti.png"], 
+  ["Joel Marttala", "Joel on kokenut kahvialan ammattilainen. Hänellä on pitkä kokemus baristana ja nykyään paahtaa kahvia Kahwe Roasteryllä.", "/epakantiskortti.png"], 
+  ["Niina Varjoranta", "Niina vastaa ", "/epakantiskortti.png"]
 ];
 
 const organizers = listOfOrganizers.map((organizer, index) => 

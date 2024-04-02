@@ -3,7 +3,7 @@ import React from 'react'
 
 const Hero = () => {
   return (
-    <div className='z-0 h-screen bg-beans-bg-image bg-cover bg-fixed relative' id="hero">
+    <div className='z-0 h-screen bg-beans-bg-image bg-cover bg-fixed relative' id="home">
         <div className='z-10 bg-white opacity-80 bg-blend-overlay h-full w-full absolute'></div>
         <div className='z-20 relative h-full w-full'>
             <Image className='z-30 left-auto right-auto top-auto bottom-auto h-96 w-auto opacity-100 p-4 bg-white/50 md:bg-transparent md:p-16 p- lg:p-40' alt="Tampereen Kahviviikko Logo" src={"/TKV24 Logo.svg"} fill></Image>
