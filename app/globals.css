@@ -20,7 +20,7 @@ body {
 
 p, li {
   font-family: "FreightText Pro";
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-style: normal;
   font-weight: 400;
 }
@@ -37,14 +37,14 @@ h1 {
 }
 
 h2 {
-  font-size: 1.5625rem;
+  font-size: 2rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
 
 h3 {
-  font-size: 25spx;
+  font-size: 1.4rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
