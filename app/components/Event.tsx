@@ -9,7 +9,7 @@ interface Props {
     description: string,
     link: string,
     milestone: boolean,
-    last: boolean
+    isLast: boolean
 }
 const milestoneEventStyles = "h-6 w-6 grow-0 shrink-0 rounded-xl bg-brand-pink"
 
@@ -22,7 +22,7 @@ const Event = (props: Props) => {
     <div className='flex flex-row gap-6'>
         <div className='flex flex-col gap-4'>
             <div className={styles}></div>
-            <div hidden={props.last} className='w-[2px] bg-white h-full m-auto'></div>
+            <div hidden={props.isLast} className='w-[2px] bg-white h-full m-auto'></div>
         </div>
         <div className='text-white flex-col max-w-2xl'>
             <div className='flex flex-row justify-between'>

@@ -29,7 +29,7 @@ const CafesParticipating = () => {
   return (
     <div className='z-0 bg-beans-bg-image bg-cover bg-fixed relative' id="cafes">
       <div className='z-0 bg-white opacity-80 bg-blend-lighten h-full w-full absolute'></div>
-      <div className='z-10 flex flex-row flex-wrap gap-6 lg:gap-16 text-black p-4 md:p-10'>
+      <div className='z-10 flex flex-row flex-wrap lg:flex-nowrap gap-6 lg:gap-16 text-black p-4 md:p-10 2xl:px-80'>
         <SideHeading
             heading1={heading1}
             heading2={heading2}
@@ -37,7 +37,7 @@ const CafesParticipating = () => {
             isDesc={true}
           />
 
-        <div className='z-10 flex flex-row justify-center gap-1 flex-wrap w-full lg:basis-4/6 content-center'>
+        <div className='z-10 flex flex-row justify-center gap-1 flex-wrap w-full basis-6/6   lg:basis-4/6 content-center'>
           {cafes}
         </div>
       </div>

@@ -11,7 +11,7 @@ const EventTimeline = () => {
     <div className='z-0 bg-cup-left-bg-image bg-cover bg-fixed relative' id="events">
       <div className='z-0 bg-black opacity-80 bg-blend-multiply h-auto w-auto left-0 right-0 top-0 bottom-0 absolute'></div>
 
-      <div className='z-10 flex flex-row flex-wrap gap-6 lg:gap-16 text-white p-4 md:p-10'>
+      <div className='z-10 flex flex-row flex-wrap lg:flex-nowrap gap-6 lg:gap-16 text-white p-4 md:p-10 2xl:px-80'>
           <SideHeading
               heading1={heading1}
               heading2={heading2}
@@ -25,7 +25,7 @@ const EventTimeline = () => {
               time="Ma 8.4.2024" 
               description=''
               milestone={true}
-              last={false}/>
+              isLast={false}/>
 
           <Event link="https://forms.gle/SnH52KFiziREMVhw7" 
             name='Cupping Pirkanmaan paahtimolla ☕️' 
@@ -36,35 +36,35 @@ const EventTimeline = () => {
             kertoo mm. kahvin eri käsittelytavoista. Kahvi ei tarkoita vain yhtä ja samaa kahvia - 
             sen pääset kokemaan itse.'
             milestone={false}
-            last={false}/>
+            isLast={false}/>
           <Event link="" 
             name='Puhetta ja maistelua kahvin hedelmälihasta (cascara) 🍒' 
             address='Kahwe Roastery, Hatanpään valtatie 40' 
             time="Ti 9.4. klo 15.30 (kesto n. 1h)" 
             description='Kahvimarjan hedelmäliha (cascara) on monelle uusi tuttavuus. Tapahtumassa pääset tutustumaan cascaraan ja siitä uutettuun juomaan.'
             milestone={false}
-            last={false}/>
+            isLast={false}/>
           <Event link="" 
             name='Latte art throwdown -kisa 🥇' 
             address='Mokkamestareiden myymälä, Verkatehtaankatu 9' 
             time="La 13.4. klo 16.30 (kesto n. 2h)" 
             description='Latte Art Throwdown on leikkimielinen kilpailu latte artin parissa. Turnaustyyppisessä kilpailussa kilpailijat kisaavat toisiaan vastaan kaatotaidollaan ja tuomareiden suosikkikuvio jatkaa seuraavalle kierrokselle. Lopulta yksi kruunataan illan latte art -mestariksi! Kilpailua sponsoroi Heikkilän Juustola. Ilmoittautuminen tapahtumaan alkaa myöhemmin.'
             milestone={false}
-            last={false}/>
+            isLast={false}/>
           <Event link="" 
             name='Kahviviikko päättyy 🙏' 
             address='' 
             time="Su 14.4.2024" 
             description=''
             milestone={true}
-            last={false}/>
+            isLast={false}/>
           <Event link="" 
             name='Epäkantiskortin voimassaolo päättyy 👋' 
             address='' 
             time="Su 21.4.2024" 
             description=''
             milestone={true}
-            last={true}/>
+            isLast={true}/>
         </div>
       </div>
     </div>  )

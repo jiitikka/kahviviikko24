@@ -9,14 +9,14 @@ const About = () => {
   return (
     <div className='bg-cups-bg-image bg-cover bg-fixed' id="about">
 
-      <div className='flex flex-row flex-wrap lg:flex-nowrap gap-6 lg:gap-16 text-white p-4 md:p-10'>
+      <div className='flex flex-row flex-wrap md:flex-nowrap gap-6 lg:gap-16 text-white p-4 md:p-10 2xl:px-80'>
         <SideHeading
           heading1={heading1}
           heading2={""}
           description={""}
           isDesc={false}
         />
-        <div className='flex flex-col xxl:flex-row lg:basis-4/6'>
+        <div className='flex flex-col xxl:flex-row md:basis-3/6 lg:basis-4/6'>
           <div className='flex flex-row flex-wrap lg:flex-nowrap gap-6 lg:gap-16'>
             <div className='flex min-w-60 max-w-96 flex-col gap-4'>
               <h2>Kahvilat ja paahtimot keskiössä</h2>
