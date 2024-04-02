@@ -9,7 +9,7 @@ const About = () => {
   return (
     <div className='bg-cups-bg-image bg-cover bg-fixed snap-start scroll-mt-20' id="about">
 
-      <div className='flex flex-row flex-wrap md:flex-nowrap gap-6 lg:gap-16 text-white p-4 md:p-10 2xl:px-80'>
+      <div className='flex flex-row flex-wrap md:flex-nowrap gap-6 lg:gap-16 text-white p-4 md:p-10 2xl:px-80 min-[2200px]:px-[28rem]'>
         <SideHeading
           heading1={heading1}
           heading2={""}

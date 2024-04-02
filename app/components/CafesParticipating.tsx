@@ -29,7 +29,7 @@ const CafesParticipating = () => {
   return (
     <div className='z-0 bg-beans-bg-image bg-cover bg-fixed relative snap-start scroll-mt-20' id="cafes">
       <div className='z-0 bg-white opacity-80 bg-blend-lighten h-full w-full absolute'></div>
-      <div className='z-10 flex flex-row flex-wrap lg:flex-nowrap gap-6 lg:gap-16 text-black p-4 md:p-10 2xl:px-80'>
+      <div className='z-10 flex flex-row flex-wrap lg:flex-nowrap gap-6 lg:gap-16 text-black p-4 md:p-10 2xl:px-80 min-[2200px]:px-[28rem]'>
         <SideHeading
             heading1={heading1}
             heading2={heading2}
