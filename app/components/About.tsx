@@ -25,8 +25,8 @@ const About = () => {
                   Tampereen seudun kahviloita. Kahviviikkoa järjestää tiimi vapaaehtoisia ja toimintaa tukemassa 
                   on kolme tamperelaista pienpaahtimoa: Kahwe, Mokkamestarit ja Pirkanmaan paahtimo. 
                   Kahviviikko tapahtuu pääosin Tampereen seudun kahviloissa, joista saat leimat tapahtuman epäkantiskorttiin. 
-                  Mukana olevat kahvilat löydät täältä. Lisäksi varsinaisen kahviviikon aikana järjestetään erilaisia 
-                  tapahtumia, joista lisätietoja löydät täältä.
+                  <a className='underline hover:text-brand-dark-pink' href='#cafes'>Mukana olevat kahvilat löydät täältä</a>. Lisäksi varsinaisen kahviviikon aikana järjestetään erilaisia 
+                  tapahtumia, joista <a className='underline hover:text-brand-dark-pink' href='#events'>lisätietoja löydät täältä</a>.
                 </p>
             </div>
             <div className='flex min-w-60 max-w-96 flex-col gap-4'>
