@@ -8,7 +8,7 @@ const description = "Osana Tampereen kahvi­viikkoa tullaan näkemään eri­lai
 
 const EventTimeline = () => {
   return (
-    <div className='z-0 bg-cup-left-bg-image bg-cover bg-fixed relative' id="events">
+    <div className='z-0 bg-cup-left-bg-image bg-cover bg-fixed relative snap-start scroll-mt-20' id="events">
       <div className='z-0 bg-black opacity-80 bg-blend-multiply h-auto w-auto left-0 right-0 top-0 bottom-0 absolute'></div>
 
       <div className='z-10 flex flex-row flex-wrap lg:flex-nowrap gap-6 lg:gap-16 text-white p-4 md:p-10 2xl:px-80'>
