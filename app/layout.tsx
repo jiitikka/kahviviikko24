@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Tampereen Kahviviikko 2024",
-  description: "Piristysruiske Tampereen kahvilakultuuriin",
+  description: "Piristysruiske Tampereen kahvilakultuuriin. 8.4.–14.4.2024",
 };
 
 export default function RootLayout({
