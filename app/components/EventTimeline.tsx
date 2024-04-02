@@ -52,6 +52,14 @@ const EventTimeline = () => {
             milestone={false}
             isLast={false}/>
           <Event link="" 
+            name='Kahviviikko afterparty 🪩' 
+            address='Onda Music and Arts Cafe, Aleksanterinkatu 22' 
+            time="La 13.4. klo 19.00->" 
+            description='Tule fiilistelemään latte art -kisan jälkitunnelmia ja juhlistamaan kaikkien aikojen Tampereen kahviviikkoa tapahtuman rentoon afterpartyyn.'
+            milestone={false}
+            isLast={false}/>
+
+          <Event link="" 
             name='Kahviviikko päättyy 🙏' 
             address='' 
             time="Su 14.4.2024" 

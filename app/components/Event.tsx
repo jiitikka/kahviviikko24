@@ -11,10 +11,10 @@ interface Props {
     milestone: boolean,
     isLast: boolean
 }
-const milestoneEventStyles = "h-6 w-6 grow-0 shrink-0 rounded-xl bg-brand-pink"
+const milestoneEventStyles = "h-8 w-8 grow-0 shrink-0 mt-[5px] rounded-full bg-brand-pink"
 
 const Event = (props: Props) => {
-    var styles = "h-6 w-6 grow-0 shrink-0 rounded-xl bg-white";
+    var styles = "h-8 w-8 grow-0 shrink-0 mt-[5px] rounded-full bg-white";
     if (props.milestone) {
         styles = milestoneEventStyles;        
     }
