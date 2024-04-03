@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { bebas_neue } from '@/app/fonts';
 import "./globals.css";
+import HotjarSnippet from "./scripts/HotjarSnippet";
 
 export const metadata: Metadata = {
   title: "Tampereen Kahviviikko 2024",
@@ -14,7 +15,10 @@ export default function RootLayout({
 }>) {
   return (
     <html className="scroll-smooth" lang="en">
-      <body className={bebas_neue.className}>{children}</body>
+      <body className={bebas_neue.className}>
+        {children}
+        <HotjarSnippet/>
+      </body>
     </html>
   );
 }
