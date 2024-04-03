@@ -17,8 +17,8 @@ export default function RootLayout({
     <html className="scroll-smooth" lang="en">
       <body className={bebas_neue.className}>
         {children}
-        <HotjarSnippet/>
       </body>
+      <HotjarSnippet/>
     </html>
   );
 }
