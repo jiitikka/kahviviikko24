@@ -1,6 +1,8 @@
 import React from 'react'
 import Script from 'next/script';
 
+//Script for HotJar
+
 const HotjarSnippet = () => {
     if (!process.env.NEXT_PUBLIC_HOTJAR_ID) return null
     return (
