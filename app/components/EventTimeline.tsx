@@ -34,14 +34,14 @@ const EventTimeline = () => {
             description='Tässä tapahtumassa pääset maistelemaan kattauksen paahtimomme kahveja. 
             Paahtimon asiantuntija Pekka taustoittaa kahvin matkaa kahvipensaasta paahtimolle ja 
             kertoo mm. kahvin eri käsittelytavoista. Kahvi ei tarkoita vain yhtä ja samaa kahvia - 
-            sen pääset kokemaan itse.'
+            sen pääset kokemaan itse. Tapahtumaan mahtuu 10 ensimmäistä ilmoittautunutta.'
             milestone={false}
             isLast={false}/>
-          <Event link="" 
+          <Event link="mailto:info@kahwe.fi" 
             name='Puhetta ja maistelua kahvin hedelmälihasta (cascara) 🍒' 
             address='Kahwe Roastery, Hatanpään valtatie 40' 
             time="Ti 9.4. klo 15.30 (kesto n. 1h)" 
-            description='Kahvimarjan hedelmäliha (cascara) on monelle uusi tuttavuus. Tapahtumassa pääset tutustumaan cascaraan ja siitä uutettuun juomaan.'
+            description='Kahvimarjan hedelmäliha (cascara) on monelle uusi tuttavuus. Tapahtumassa pääset tutustumaan cascaraan ja siitä uutettuun juomaan. Mukaan mahtuu 10 ensimmäistä ilmoittautunutta. Ilmoittautumiset: info@kahwe.fi'
             milestone={false}
             isLast={false}/>
           <Event link="" 

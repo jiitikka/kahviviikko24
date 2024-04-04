@@ -1,5 +1,5 @@
 import React from 'react'
-import SectionContainer from './SectionContainer'
+import SectionContainer from './Faq'
 import Image from 'next/image'
 import SideHeading from './SideHeading';
 
@@ -26,7 +26,7 @@ const About = () => {
                   on kolme tamperelaista pienpaahtimoa: Kahwe, Mokkamestarit ja Pirkanmaan paahtimo. 
                   Kahviviikko tapahtuu pääosin Tampereen seudun kahviloissa, joista saat leimat tapahtuman epäkantiskorttiin. 
                   <a className='underline hover:text-brand-pink' href='#cafes'>Mukana olevat kahvilat löydät täältä</a>. Lisäksi varsinaisen kahviviikon aikana järjestetään erilaisia 
-                  tapahtumia, joista <a className='underline hover:text-brand-pink scr' href='#events'>lisätietoja löydät täältä</a>.
+                  tapahtumia, joista <a className='underline hover:text-brand-pink scr' href='#events'>lisätietoja löydät täältä</a>. <a className='underline hover:text-brand-pink scr' href='#faq'>Katso myös usein kysytyt kysymykset</a>
                 </p>
             </div>
             <div className='flex min-w-60 max-w-96 flex-col gap-4'>
@@ -35,10 +35,10 @@ const About = () => {
                 Epäkantiskortti on kanta-asiakaskortin vastakohta: saat leimoja kun kierrät eri kahviloita. Kaava on helppo:
               </p>
               <ul>
-                <li> ➡ Mene kahvilaan ja osta kahvijuoma </li>
-                <li> ➡ Ostetusta kahvista saat passiisi leiman </li>
+                <li> ➡ Mene kahvilaan ja osta kahvi- tai teejuoma </li>
+                <li> ➡ Ostetusta kahvista/teestä saat passiisi leiman </li>
                 <li> ➡ Toista sama eri kahviloissa</li>
-                <li> ➡ Joka viides kahvi on ilmainen</li>
+                <li> ➡ Joka viides kahvi/tee on ilmainen</li>
               </ul>
               <p>
                 Passi on voimassa vielä viikon varsinaisen 

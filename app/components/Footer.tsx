@@ -3,7 +3,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className='w-full flex flex-row flex-wrap items-center justify-center bg-brand-pink text-white gap-4 lg:gap-10 p-4 lg:p-10'>
+    <div className='w-full flex flex-row flex-wrap items-center justify-center bg-brand-pink text-white gap-4 lg:gap-10 p-4 lg:p-10 text-center'>
       <a href='https://instagram.com/tampereenkahviviikko'>
         <Image className="h-12 w-12 rounded-full border-2 border-brand-pink hover:border-white transition-colors" src="/Instagram.svg" alt="Link to our Instagram page" height={48} width={48}/>
       </a>

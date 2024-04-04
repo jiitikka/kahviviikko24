@@ -24,7 +24,7 @@ const Event = (props: Props) => {
             <div className={styles}></div>
             <div hidden={props.isLast} className='w-[2px] bg-white h-full m-auto'></div>
         </div>
-        <div className='text-white flex-col max-w-2xl'>
+        <div className='flex text-white flex-col gap-2 max-w-2xl'>
             <div className='flex flex-row justify-between'>
                 <h2>{props.name}</h2><a hidden={props.link===""} href={props.link}><Image className='h-8 w-auto' height={24} width={24} alt="Hyperlink icon" src={'/link.svg'}/></a>
             </div>
