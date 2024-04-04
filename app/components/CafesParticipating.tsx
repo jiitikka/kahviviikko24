@@ -35,6 +35,7 @@ const CafesParticipating = () => {
             heading2={heading2}
             description={description}
             isDesc={true}
+            isBlackText={true}
           />
 
         <div className='z-10 flex flex-row justify-center gap-1 flex-wrap w-full basis-6/6   lg:basis-4/6 content-center'>

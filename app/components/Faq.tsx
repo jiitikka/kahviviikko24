@@ -16,6 +16,7 @@ const Faq = () => {
             heading2={heading2}
             description={description}
             isDesc={false}
+            isBlackText={true}
           />
         <div className='z-10 flex flex-col gap-6 w-full basis-6/6 lg:basis-4/6'>
 

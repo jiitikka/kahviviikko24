@@ -22,6 +22,7 @@ const Organizers = () => {
           heading2=''
           description=''
           isDesc={false}
+          isBlackText={true}
         />
         <div className='flex flex-row flex-wrap gap-10 lg:basis-4/ 6'>{organizers}</div>
       </div>

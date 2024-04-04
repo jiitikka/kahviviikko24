@@ -15,6 +15,7 @@ const About = () => {
           heading2={""}
           description={""}
           isDesc={false}
+          isBlackText={false}
         />
         <div className='flex flex-col xxl:flex-row md:basis-3/6 lg:basis-4/6'>
           <div className='flex flex-row flex-wrap lg:flex-nowrap gap-6 lg:gap-16'>
