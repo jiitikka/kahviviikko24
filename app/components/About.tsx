@@ -26,7 +26,7 @@ const About = () => {
                   on kolme tamperelaista pienpaahtimoa: Kahwe, Mokkamestarit ja Pirkanmaan paahtimo. 
                   Kahviviikko tapahtuu pääosin Tampereen seudun kahviloissa, joista saat leimat tapahtuman epäkantiskorttiin. 
                   <a className='underline hover:text-brand-pink' href='#cafes'>Mukana olevat kahvilat löydät täältä</a>. Lisäksi varsinaisen kahviviikon aikana järjestetään erilaisia 
-                  tapahtumia, joista <a className='underline hover:text-brand-pink scr' href='#events'>lisätietoja löydät täältä</a>. <a className='underline hover:text-brand-pink scr' href='#faq'>Katso myös usein kysytyt kysymykset</a>
+                  tapahtumia, joista <a className='underline hover:text-brand-pink scr' href='#events'>lisätietoja löydät täältä</a>. <a className='underline hover:text-brand-pink scr' href='#faq'>Katso myös usein kysytyt kysymykset.</a>
                 </p>
             </div>
             <div className='flex min-w-60 max-w-96 flex-col gap-4'>
