@@ -9,11 +9,11 @@ interface Props {
     alt: string
 }
 
-const CafeCell = (props: Props) => {
+const OrganizerPerson = (props: Props) => {
   return (
-    <div className='flex flex-row gap-4 lg:gap-10'>
-        <Image className='rounded-full h-60 w-32 md:h-72 md:w-40' src={props.src} alt={props.alt} height={300} width={180} style={{objectFit: "cover"}} />
-        <div className='flex flex-col'>
+    <div className='flex flex-row flex-wrap xl:flex-nowrap gap-7 lg:gap-10 items-center lg:basis-1/2'>
+        <Image className='rounded-full h-60 w-auto' src={props.src} alt={props.alt} height={300} width={180} style={{objectFit: "cover"}} />
+        <div className='flex flex-col gap-2 min-w-36'>
             <h2>{props.name}</h2>
             <p>{props.description}</p>
         </div>
@@ -21,11 +21,11 @@ const CafeCell = (props: Props) => {
   )
 }
 
-CafeCell.propTypes = {
+OrganizerPerson.propTypes = {
     name: PropTypes.string,
     description: PropTypes.string,
     src: PropTypes.string,
     alt: PropTypes.string
 }
 
-export default CafeCell
+export default OrganizerPerson

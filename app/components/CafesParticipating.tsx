@@ -1,6 +1,7 @@
 import React from 'react'
 import CafeCell from './CafeCell'
 import SideHeading from './SideHeading';
+import Image from 'next/image';
 
 const CafesParticipating = () => {
   const listOfCafes = [["/cafes/asema_logo.png", "Aseman kahvila logo", "https://www.asemankahvilatampere.fi/"], 
@@ -25,24 +26,27 @@ const CafesParticipating = () => {
   const heading1 = "Mukana olevat kahvilat";
   const heading2 = "Epäkantiskortti käy näissä kahviloissa";
   const description = "Kahviviikossa mukana on joukko loistavia Tampereen seudun kahviloita. Kaikille yhteistä on intohimoinen suhde asiakkaidensa palvelemiseen, ja tarjolla oleva laadukas pienpaahtimokahvi. Pääosa kahviloista sijaitsee Tampereen kantakaupungin alueella, mutta mahtuupa joukkoon myös kahvilat Lielahdesta ja Lempäälästä sekä Pirkkalasta!";
-
+//<Image className='' alt="Background image with coffee beans" fill src={'/bg_beans.jpg'} style={{objectFit: "cover"}} />
   return (
-    <div className='z-0 bg-beans-bg-image bg-cover bg-fixed relative snap-start scroll-mt-20' id="cafes">
-      <div className='z-0 bg-white opacity-80 bg-blend-lighten h-full w-full absolute'></div>
-      <div className='z-10 flex flex-row flex-wrap lg:flex-nowrap gap-6 lg:gap-16 text-black p-4 md:p-10 2xl:px-80 min-[2200px]:px-[28rem]'>
-        <SideHeading
-            heading1={heading1}
-            heading2={heading2}
-            description={description}
-            isDesc={true}
-            isBlackText={true}
-          />
-
-        <div className='z-10 flex flex-row justify-center gap-1 flex-wrap w-full basis-6/6   lg:basis-4/6 content-center'>
-          {cafes}
+    <div className='z-0 bg-beans-bg-image bg-cover bg-fixedASD relative snap-start scroll-mt-20' id="cafes">
+      <div className='z-0 bg-gradient-to-r from-white to-transparent opacity-95 h-full w-full absolute'></div>
+      <div className='flex justify-center'>
+        <div className='z-10 flex flex-row flex-wrap lg:flex-nowrap w-full gap-6 lg:gap-16 text-black p-4 md:p-10 max-w-[1440px]'>
+          <SideHeading
+              heading1={heading1}
+              heading2={heading2}
+              description={description}
+              isDesc={true}
+              isBlackText={true}
+            />
+  
+          <div className='z-10 flex flex-row justify-center gap-1 flex-wrap w-full basis-6/6   lg:basis-4/6 content-center'>
+            {cafes}
+          </div>
         </div>
-      </div>
-    </div>
+  
+      </div>    
+</div>
   )
 }
 
