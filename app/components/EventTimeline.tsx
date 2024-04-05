@@ -20,7 +20,7 @@ const EventTimeline = () => {
                 isDesc={true}
                 isBlackText={false}
               />          
-          <div className='z-10 flex flex-col gap-6 lg:4/6'>
+          <div className='z-10 flex flex-col lg:4/6'>
             <Event link="" 
                 name='Kahviviikko alkaa 🎉' 
                 address='' 

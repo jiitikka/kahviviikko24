@@ -20,13 +20,13 @@ const Event = (props: Props) => {
     }
   return (
     <div className='flex flex-row gap-6'>
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col'>
             <div className={styles}></div>
             <div hidden={props.isLast} className='w-[2px] bg-white h-full m-auto'></div>
         </div>
-        <div className='flex text-white flex-col gap-2 max-w-2xl'>
-            <div className='flex flex-row justify-between'>
-                <h2>{props.name}</h2><a hidden={props.link===""} href={props.link}><Image className='h-8 w-auto' height={24} width={24} alt="Hyperlink icon" src={'/link.svg'}/></a>
+        <div className='flex text-white flex-col gap-2 max-w-2xl pb-6 lg:pb-10'>
+            <div className='flex flex-row gap-2 justify-between'>
+                <h2>{props.name}</h2><a className='h-8 w-8 shrink-0' hidden={props.link===""} href={props.link}><Image className='h-8 w-8' height={24} width={24} alt="Hyperlink icon" src={'/link.svg'}/></a>
             </div>
             <div className='flex flex-row wrap gap-4'>
                 <h3>{props.time}</h3>
