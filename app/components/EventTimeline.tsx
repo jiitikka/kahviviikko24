@@ -46,7 +46,7 @@ const EventTimeline = () => {
               description='Kahvimarjan hedelmäliha (cascara) on monelle uusi tuttavuus. Tapahtumassa pääset tutustumaan cascaraan ja siitä uutettuun juomaan. Mukaan mahtuu 10 ensimmäistä ilmoittautunutta. Ilmoittautumiset: info@kahwe.fi'
               milestone={false}
               isLast={false}/>
-            <Event link="" 
+            <Event link="https://forms.gle/6zHJHhK8hq3os2ci6" 
               name='Latte art throwdown -kisa 🥇' 
               address='Mokkamestareiden myymälä, Verkatehtaankatu 9' 
               time="La 13.4. klo 16.30 (kesto n. 2h)" 
