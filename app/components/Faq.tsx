@@ -48,7 +48,15 @@ const Faq = () => {
                 Kahvilat määrittävät itse, minkä juoman passilla saa lunastaa. Kun sinulla on ilmaiseen kahviin/teehen oikeuttava määrä leimoja kerättynä, voit lunastaa juoman kahvilan määrittämästä valikoimasta. 
               </p>
             </div>
-  
+            <div className='z-10 flex flex-col gap-2'>
+              <h3>
+                Voinko siis kerätä leimoja ja lunastaa kahveja vielä kahviviikon jälkeisellä viikolla, kun epäkantiskortti on vielä voimassa?
+              </h3>
+              <p>
+                Kyllä, voit kerätä leimoja ja lunastaa kahveja koko epäkantiskortin voimassaoloajan eli <strong>22.4. asti</strong>. Tämän jälkeen leimoja ei voi enää kerätä, eikä kahveja lunastaa. 
+              </p>
+            </div>
+
             
             <h2>Kahvilat</h2>
   
