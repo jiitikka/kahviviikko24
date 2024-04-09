@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { bebas_neue } from '@/app/fonts';
 import "./globals.css";
 import HotjarSnippet from "./scripts/HotjarSnippet";
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
   title: "Tampereen Kahviviikko 2024",
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html className="scroll-smooth" lang="en">
       <body className={bebas_neue.className}>
+        <GoogleAnalytics gaId="G-XF87P2MYBE" />
         {children}
       </body>
       <HotjarSnippet/>
