@@ -28,7 +28,7 @@ const CafesParticipating = () => {
   const description = "Kahviviikossa mukana on joukko loistavia Tampereen seudun kahviloita. Kaikille yhteistä on intohimoinen suhde asiakkaidensa palvelemiseen, ja tarjolla oleva laadukas pienpaahtimokahvi. Pääosa kahviloista sijaitsee Tampereen kantakaupungin alueella, mutta mahtuupa joukkoon myös kahvilat Lielahdesta ja Lempäälästä sekä Pirkkalasta!";
 //<Image className='' alt="Background image with coffee beans" fill src={'/bg_beans.jpg'} style={{objectFit: "cover"}} />
   return (
-    <div className='z-0 bg-beans-bg-image bg-cover bg-fixedASD relative snap-start scroll-mt-20' id="cafes">
+    <div className='z-0 bg-beans-bg-image bg-cover relative snap-start scroll-mt-20' id="cafes">
       <div className='z-0 bg-gradient-to-r from-white to-transparent opacity-95 h-full w-full absolute'></div>
       <div className='flex justify-center'>
         <div className='z-10 flex flex-row flex-wrap lg:flex-nowrap w-full gap-6 lg:gap-16 text-black p-4 md:p-10 max-w-[1440px]'>

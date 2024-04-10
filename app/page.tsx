@@ -6,6 +6,7 @@ import Organizers from "./components/Organizers";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Faq from "./components/Faq";
+import CafeMap from "./components/CafeMap";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Header/>
       <About/>
       <CafesParticipating/>
+      <CafeMap/>
       <EventTimeline/>
       <Faq/>
       <Organizers/>
