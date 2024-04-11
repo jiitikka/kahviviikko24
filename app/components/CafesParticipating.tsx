@@ -7,7 +7,6 @@ const CafesParticipating = () => {
   const listOfCafes = [["/cafes/asema_logo.png", "Aseman kahvila logo", "https://www.asemankahvilatampere.fi/"], 
   ["/cafes/hidden_logo.png", "Thé Hidden logo", "https://www.instagram.com/thehidden.fi"], 
   ["/cafes/kaffila_logo.png", "Kaffila logo", "https://www.facebook.com/kaffila33100/"], 
-  ["/cafes/kahiwa_logo.png", "Kahiwa Pirkkala logo", "https://www.kahiwacoffee.fi/"], 
   ["/cafes/kokko_logo.png", "Kahvibaari Kokko logo", "https://kokkokaleva.fi/"], 
   ["/cafes/marco_logo.png", "Boulangerie Marco logo", "https://www.boulangeriemarco.fi/"], 
   ["/cafes/metso_logo.png", "Cafe Metso logo", "https://www.cafemetso.fi/"], 
