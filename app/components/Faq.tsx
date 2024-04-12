@@ -29,7 +29,7 @@ const Faq = () => {
               </h3>
               <p>
                 Saat epäkantiskortin mistä tahansa tapahtumaan <a className='underline hover:text-brand-pink' href='#cafes'>osallistuvasta kahvilasta</a>. Kortilla saa joka viidennen kahvin ilmaiseksi. 
-                Eli kun passissasi on neljä leimaa, saat kahvilasta ilmaisen kahvin/teen, ja viidennen leiman.
+                Eli kun passissasi on neljä leimaa, saat kahvilasta ilmaisen kahvin/teen, ja viidennen leiman. Mikäli keräät kaikki 15 leimaa, voi epäkantiskortilla siis saada yhteensä kolme ilmaista kahvia.
               </p>
             </div>
             <div className='z-10 flex flex-col gap-2'>
@@ -54,6 +54,14 @@ const Faq = () => {
               </h3>
               <p>
                 Kyllä, voit kerätä leimoja ja lunastaa kahveja koko epäkantiskortin voimassaoloajan eli <strong>22.4. asti</strong>. Tämän jälkeen leimoja ei voi enää kerätä, eikä kahveja lunastaa. 
+              </p>
+            </div>
+            <div className='z-10 flex flex-col gap-2'>
+              <h3>
+                Miten saan epäkantiskortin täyteen, kun Kahiwa Pirkkala lopetti toimintansa kesken Kahviviikon?
+              </h3>
+              <p>
+                Kahiwa Pirkkalan leiman voit noutaa mokkamestarit kahvi- ja teemyymälästä (annos ja leima tai ilmaisen 5. kahvin lunastus). 
               </p>
             </div>
 

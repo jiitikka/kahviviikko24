@@ -28,7 +28,6 @@ const EventTimeline = () => {
                 description=''
                 milestone={true}
                 isLast={false}/>
-  
             <Event link="https://forms.gle/SnH52KFiziREMVhw7" 
               name='Cupping Pirkanmaan paahtimolla ☕️' 
               address='Pirkanmaan paahtimo, Patamäenkatu 2' 
@@ -46,21 +45,22 @@ const EventTimeline = () => {
               description='Kahvimarjan hedelmäliha (cascara) on monelle uusi tuttavuus. Tapahtumassa pääset tutustumaan cascaraan ja siitä uutettuun juomaan. Mukaan mahtuu 10 ensimmäistä ilmoittautunutta. Ilmoittautumiset: info@kahwe.fi'
               milestone={false}
               isLast={false}/>
-            <Event link="https://forms.gle/6zHJHhK8hq3os2ci6" 
-              name='Latte art throwdown -kisa 🥇' 
+            <Event link="" 
+              name='Heikkilän Juustolan luomutäysmaitoon valmistetut kahvit veloituksetta ☕️' 
               address='Mokkamestareiden myymälä, Verkatehtaankatu 9' 
-              time="La 13.4. klo 16.30 (kesto n. 2h)" 
-              description='Latte Art Throwdown on leikkimielinen kilpailu latte artin parissa. Turnaustyyppisessä kilpailussa kilpailijat kisaavat toisiaan vastaan kaatotaidollaan ja tuomareiden suosikkikuvio jatkaa seuraavalle kierrokselle. Lopulta yksi kruunataan illan latte art -mestariksi! Kilpailua sponsoroi Heikkilän Juustola. Ilmoittautuminen tapahtumaan alkaa myöhemmin.'
+              time="La 13.4. klo 11–16 (tai niin kauan kuin tavaraa riittää.)" 
+              description='Latte Art Throwdown jouduttiin perumaan vähäisen osallistujamäärän vuoksi. Sen sijaan Mokkamestarien myymälällä kaikki Heikkilän Juustolan luomutäysmaitoon valmistetut kahvit veloituksetta! 
+              Tarjous voimassa niin kauan kuin tavaraa riittää. Maidot tapahtumaan tarjoaa Heikkilän juustola ja kahvit Mokkamestarit. 
+              Myymälällä sinua palvelevat kahvikouluttaja Niina Varjoranta sekä pääpaahtaja Long Nguyen. Tervetuloa!'
               milestone={false}
               isLast={false}/>
             <Event link="" 
               name='Kahviviikko afterparty 🪩' 
               address='Onda Music and Arts Cafe, Aleksanterinkatu 22' 
               time="La 13.4. klo 19.00->" 
-              description='Tule fiilistelemään latte art -kisan jälkitunnelmia ja juhlistamaan kaikkien aikojen Tampereen kahviviikkoa tapahtuman rentoon afterpartyyn.'
+              description='Tule juhlistamaan kaikkien aikojen Tampereen kahviviikkoa tapahtuman rentoon afterpartyyn.'
               milestone={false}
               isLast={false}/>
-  
             <Event link="" 
               name='Kahviviikko päättyy 🙏' 
               address='' 
