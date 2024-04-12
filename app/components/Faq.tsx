@@ -28,7 +28,7 @@ const Faq = () => {
                 Mistä saan epäkantiskortin ja mitä hyötyä kortista on?
               </h3>
               <p>
-                Saat epäkantiskortin mistä tahansa tapahtumaan <a className='underline hover:text-brand-pink' href='#cafes'>osallistuvasta kahvilasta</a>. Kortilla saa joka viidennen kahvin ilmaiseksi. 
+                Saat epäkantiskortin mistä tahansa tapahtumaan <a className='text-brand-dark-pink font-bold hover:text-brand-pink' href='#cafes'>osallistuvasta kahvilasta</a>. Kortilla saa joka viidennen kahvin ilmaiseksi. 
                 Eli kun passissasi on neljä leimaa, saat kahvilasta ilmaisen kahvin/teen, ja viidennen leiman. Mikäli keräät kaikki 15 leimaa, voi epäkantiskortilla siis saada yhteensä kolme ilmaista kahvia.
               </p>
             </div>
@@ -85,6 +85,18 @@ const Faq = () => {
                 Aukioloajat vaihtelevat kahvilasta kahvilaan. Useimmat kahvilat ovat arkisin vähintään kuuteen asti auki, joten myös työpäivän jälkeen kiertäminen onnistuu. Tarkista kuitenkin tarkat aukioloajat kahviloiden omilta sivuilta tai sosiaalisen median tileiltä.
               </p>
             </div>
+
+            <h2>Tapahtuma</h2>
+  
+              <div className='z-10 flex flex-col gap-2'>
+                <h3>
+                  Peruttiinko Latte Art Throwdown?
+                </h3>
+                <p>
+                  Latte Art Throwdown -kilpailu jouduttiin valitettavasti perumaan, koska kisaan ei saatu riittävästi osallistujia. Sen sijaan Mokkamestarit tekevät ilmaiseksi kahveja Heikkilän Juustolan täysmaitoon. <a className='text-brand-dark-pink font-bold hover:text-brand-pink' href='#events'>Katso lisää täältä.</a>
+                </p>
+              </div>
+
           </div>
         </div>
       </div>    
