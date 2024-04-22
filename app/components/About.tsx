@@ -20,6 +20,10 @@ const About = () => {
           <div className='flex flex-col xxl:flex-row md:basis-3/6 lg:basis-4/6'>
             <div className='flex flex-row flex-wrap lg:flex-nowrap gap-6 lg:gap-16'>
               <div className='flex min-w-60 max-w-96 flex-col gap-4'>
+                <h2>Kahviviikko 2024 on nyt päättynyt!</h2>      
+                <p>
+                  Kiitos kaikille tapahtumaan osallistuneille ja sen mahdollistaneille. Kaikkien aikojen paras Tampereen Kahviviikko 2024 on nyt päättynyt.
+                </p>          
                 <h2>Kahvilat ja paahtimot keskiössä</h2>
                   <p>
                     Tampereen kahviviikko on syntynyt rakkaudesta hyvään kahviin ja halusta nostaa esiin mahtavia 
