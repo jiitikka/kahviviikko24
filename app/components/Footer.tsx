@@ -13,7 +13,12 @@ const Footer = () => {
       <div className='flex w-full flex-row flex-wrap items-center justify-center gap-4 lg:gap-10 text-center'>
         <p>Yhteydenotot: tampereenkahviviikko(at)gmail.com</p>
         <p>Taustakuvat: Unsplash</p>
-        <p>Sivusto käyttää Google Analytics ja HotJar -analytiikkapalveluja</p>
+        <p>
+          Sivusto käyttää Google Analytics ja HotJar -analytiikkapalveluja vain, jos hyväksyt evästeet.{" "}
+          <a href="/privacy" className="underline underline-offset-2">
+            Lue tietosuojaseloste
+          </a>
+        </p>
         <p>© Jani Tikka/Tampereen kahviviikko 2024</p>
       </div>      
       <a className='flex justify-center align-middle items-center rounded-full m-2 border-2 border-brand-pink hover:border-white hover:text-brand-pink transition-colors' href='#home'>
