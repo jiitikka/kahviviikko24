@@ -8,18 +8,17 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        'beans-bg-image': "url('/bg_beans.jpg')",
-        'cups-bg-image': "url('/bg_cups_red_overlay.png')",
-        'cup-left-bg-image': "url('/bg_cup_left.jpg')"
-      },
       colors: {
         'brand-pink': '#e47174',
-        'brand-dark-pink': '#c15357',      
-      }
+        'brand-dark-pink': '#c15357',
+      },
+      backgroundImage: {
+        'beans-bg-image': "url('/bg_beans.jpg')",
+        'cups-bg-image': "url('/bg_cups_red_overlay.png')",
+        'cup-left-bg-image': "url('/bg_cup_left.jpg')",
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
     },
   },
   plugins: [],
