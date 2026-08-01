@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { bebas_neue } from '@/app/fonts';
 import "./globals.css";
 import HotjarSnippet from "./scripts/HotjarSnippet";
-import { GoogleAnalytics } from '@next/third-parties/google';
 import ConsentBanner from "./components/ConsentBanner";
 import Script from "next/script";
+import { CONSENT_STORAGE_KEY, CONSENT_EVENT } from "@/app/consent";
 
 export const metadata: Metadata = {
   title: "Tampereen Kahviviikko 2024",
@@ -14,13 +14,13 @@ export const metadata: Metadata = {
   }
 };
 
+const GA_MEASUREMENT_ID = "G-XF87P2MYBE";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const consentKey = "tkv24-analytics-consent-v1";
-
   return (
     <html className="scroll-smooth" lang="en">
       <body className={bebas_neue.className}>
@@ -29,20 +29,15 @@ export default function RootLayout({
           {`
             (function() {
               try {
-                var key = '${consentKey}';
-                var consent = typeof window !== 'undefined' ? window.localStorage.getItem(key) : null;
-                if (consent === 'accepted') {
-                  window.__tkv24AnalyticsAllowed = true;
-                } else {
-                  window.__tkv24AnalyticsAllowed = false;
-                }
+                var key = ${JSON.stringify(CONSENT_STORAGE_KEY)};
+                var consent = window.localStorage.getItem(key);
+                window.__tkv24AnalyticsAllowed = consent === 'accepted';
               } catch (e) {
                 window.__tkv24AnalyticsAllowed = false;
               }
             })();
           `}
         </Script>
-        {typeof window === "undefined" ? null : null}
         {/* GA wrapper that respects consent (evaluated client-side) */}
         <Script id="ga-loader" strategy="afterInteractive">
           {`
@@ -54,23 +49,25 @@ export default function RootLayout({
                 window.__tkv24GALoaded = true;
                 var script = document.createElement('script');
                 script.setAttribute('data-nscript', 'afterInteractive');
-                script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XF87P2MYBE';
+                script.src = 'https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}';
                 script.async = true;
                 document.head.appendChild(script);
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){window.dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', 'G-XF87P2MYBE');
+                gtag('config', '${GA_MEASUREMENT_ID}');
               }
-              if (window.__tkv24AnalyticsAllowed) {
+              loadGA();
+              // Consent given in this tab.
+              window.addEventListener(${JSON.stringify(CONSENT_EVENT)}, function(e) {
+                window.__tkv24AnalyticsAllowed = e.detail === 'accepted';
                 loadGA();
-              }
+              });
+              // Consent given in another tab.
               window.addEventListener('storage', function(e) {
-                if (e.key === '${consentKey}') {
+                if (e.key === ${JSON.stringify(CONSENT_STORAGE_KEY)}) {
                   window.__tkv24AnalyticsAllowed = e.newValue === 'accepted';
-                  if (window.__tkv24AnalyticsAllowed) {
-                    loadGA();
-                  }
+                  loadGA();
                 }
               });
             })();
@@ -78,9 +75,9 @@ export default function RootLayout({
         </Script>
         {children}
         <ConsentBanner />
+        {/* Hotjar snippet no-ops until consent is given; controlled internally */}
+        <HotjarSnippet />
       </body>
-      {/* Hotjar snippet will no-op if consent not given; controlled internally */}
-      <HotjarSnippet/>
     </html>
   );
 }
