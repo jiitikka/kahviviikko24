@@ -14,8 +14,10 @@ const contentSecurityPolicy = [
   // Google Analytics (gtag) and Hotjar.
   "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com https://static.hotjar.com https://script.hotjar.com",
   // Tailwind and next/image emit inline style attributes; app/globals.css
-  // imports an Adobe Typekit stylesheet.
-  "style-src 'self' 'unsafe-inline' https://use.typekit.net",
+  // imports an Adobe Typekit stylesheet from use.typekit.net, which in turn
+  // pulls a tracking stylesheet (p.css) from p.typekit.net — both origins are
+  // needed or the chained request is blocked.
+  "style-src 'self' 'unsafe-inline' https://use.typekit.net https://p.typekit.net",
   "img-src 'self' data: blob: https://*.google-analytics.com https://*.googletagmanager.com https://*.hotjar.com",
   // next/font/google self-hosts its fonts at build time; Typekit serves its
   // own font files from use.typekit.net / p.typekit.net.

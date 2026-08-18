@@ -39,29 +39,21 @@ plus `X-Frame-Options: DENY`, `nosniff`, `strict-origin-when-cross-origin`,
 a `Permissions-Policy` denying camera/microphone/geolocation/payment/USB,
 `Strict-Transport-Security`, and `poweredByHeader: false`.
 
-> **Deployment caveat — verify this after the first deploy.** `headers()` in
+> **Hosting dependency — checked, and satisfied.** `headers()` in
 > `next.config.mjs` is implemented by the **Next.js server at request time**. It
-> is honoured when Amplify hosts the app on its compute platform (`WEB_COMPUTE`,
-> "Next.js SSR"), and **silently ignored** when Amplify hosts it as a purely
-> static app (`WEB` — S3 + CloudFront serving prerendered files). Every route in
-> this project prerenders to static HTML, so either platform is plausible here
-> and the difference is invisible at build time. The verification below was done
-> against `next start`, which is the server — it does not prove the production
-> hosting applies these headers.
+> is honoured on Amplify's compute platform and **silently ignored** when an app
+> is hosted as purely static files (S3 + CloudFront). Every route here
+> prerenders to static HTML, so the distinction mattered and is invisible at
+> build time.
 >
-> Decisive check once deployed:
+> Production responses were inspected and carry `X-Powered-By: Next.js`,
+> `X-Nextjs-Cache`, `X-Nextjs-Prerender` and `X-Nextjs-Stale-Time` — headers only
+> the Next.js server emits. The app therefore runs on the compute platform and
+> these headers will apply. No Amplify custom-headers configuration is needed.
 >
-> ```
-> curl -sI https://<production-domain>/ | grep -i '^content-security-policy'
-> ```
->
-> No output means the whole header set above is absent in production and this
-> finding is *not* actually fixed for visitors. The remedy then is Amplify custom
-> headers (console → Hosting → Custom headers, or a `customHeaders:` block in
-> `amplify.yml`) carrying the same values. Note that adding an `amplify.yml` to
-> a repo whose build settings currently live in the console **overrides** those
-> console settings, so prefer the console route unless the build config is
-> already in the file. Do not configure both mechanisms with differing policies.
+> Should the app ever be moved to static hosting, this entire finding silently
+> reverts, and the header set would have to be re-added via Amplify console →
+> Hosting → Custom headers.
 
 **Known limitation:** `script-src` still needs `'unsafe-inline'`, because the
 consent gate and Next's own hydration payload are inline scripts. Removing it
@@ -274,3 +266,30 @@ restricts what may be framed here.
   Zero CSP violations were reported for the full page in any of the three
   states. This test found the Typekit origin of the "accepted risks" section,
   which static reading of the components had missed.
+
+- **Known blind spot in that test.** This sandbox's network policy blocks
+  outbound requests to `use.typekit.net` and `www.google.com`, so the Typekit
+  stylesheet and the Maps embed never actually loaded during the browser run.
+  Any CSP violation that only occurs *downstream* of those origins could not
+  surface. Exactly one such case was later found by reading production response
+  headers: `use.typekit.net/yni4vft.css` chains to a tracking stylesheet at
+  `p.typekit.net/p.css`, which the first version of `style-src` would have
+  blocked. `p.typekit.net` is now allow-listed for both `style-src` and
+  `font-src`. The residual risk is the same class of chained request behind the
+  Google Maps iframe; `frame-src` covers the iframe itself, and content loaded
+  *inside* a cross-origin frame is governed by Google's own policy rather than
+  this one, so no further directive is expected to be needed — but the CSP
+  should be re-checked in a real browser against the deployed site.
+
+## Post-deploy checklist
+
+The hosting question under finding 1 is **resolved**: production responses carry
+`X-Powered-By: Next.js`, `X-Nextjs-Cache` and `X-Nextjs-Prerender`, so the app
+runs on Amplify's compute platform and `next.config.mjs` headers are honoured.
+No Amplify custom-headers configuration is required.
+
+After the first deploy, load the site in a browser with the console open and
+confirm there are no `Content Security Policy` violations — specifically that
+the Typekit webfonts still render and the cafes map still displays. Those are
+the two third-party surfaces the CSP constrains, and the two the sandboxed test
+could not fully exercise.
