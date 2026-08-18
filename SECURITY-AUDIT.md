@@ -94,17 +94,66 @@ alerts on), and GHSA-r28c-9q8g-f849 (path traversal in source-map auto-loading,
 Bumping the direct dependency to `^8.5.18` fixed only the first. The other two
 are fixed with a yarn `resolutions` override, which is safe here because
 8.4.31 → 8.5.25 is a minor bump *within major 8*: postcss keeps its API stable
-across the 8.x line. (The same trick is deliberately **not** applied to `sharp`
-below, where the bump would cross a 0.x major.)
+across the 8.x line.
 
-The tree now contains exactly one `postcss`, hoisted at 8.5.25, and the lockfile
-has a single entry. Verified afterwards that the CSS pipeline is unharmed: the
-Typekit `@import`, the Tailwind preflight reset, compiled utility classes, brand
-colours, and the `next/font` face all survive into the built bundle.
+The tree now contains exactly one `postcss`, and the lockfile has a single entry.
+Verified afterwards that the CSS pipeline is unharmed: the Typekit `@import`, the
+Tailwind preflight reset, compiled utility classes, brand colours, and the
+`next/font` face all survive into the built bundle.
 
 Severity stays Low for *this* site: postcss runs at build time over CSS in this
 repository, and the source-map advisories need attacker-controlled CSS to reach
 the parser. Worth patching properly regardless, and it clears the alert.
+
+### 4b. `nanoid` infinite loop — High (advisory) — fixed
+
+GHSA-2v37-7h3g-55p8 / **CVE-2026-67213**: custom generators loop indefinitely
+when size is zero, `<3.3.18`. `nanoid` is a transitive dependency of `postcss`,
+so it arrived here through the CSS toolchain and never reaches the browser.
+
+Note that the postcss fix above *moved* this dependency (3.3.11 → 3.3.16) without
+clearing it — 3.3.16 is still inside the vulnerable range. Fixed by a
+`resolutions` entry pinning `^3.3.18`.
+
+### 4c. Stale transitive build tooling — Low to High (advisories) — fixed
+
+Reacting to Dependabot mail one package at a time was missing things, so the
+whole lockfile was checked against the npm advisory database by exact resolved
+version, rather than by re-resolving the tree (a fresh resolve reports far fewer
+problems, because it silently picks newer versions than the lockfile pins —
+which is exactly how the items below stayed invisible).
+
+That found 25 advisories across seven more packages, every one of them stale
+build tooling reachable only through `next`'s bundler and the eslint toolchain:
+
+| Package | Was | Now |
+| --- | --- | --- |
+| `@babel/core` | 7.28.5 | 7.29.7 |
+| `ajv` | 6.12.6 | 6.15.0 |
+| `brace-expansion` | 1.1.12, 2.0.2 | 1.1.18, 5.0.9 |
+| `flatted` | 3.3.3 | 3.4.4 |
+| `js-yaml` | 4.1.1 | 4.3.1 |
+| `minimatch` | 3.1.2, 9.0.5 | 3.1.5, 10.2.6 |
+| `picomatch` | 2.3.1, 4.0.3 | 2.3.2, 4.0.5 |
+
+All are ReDoS, DoS, prototype-pollution or arbitrary-file-read issues in tooling
+that runs at build time over this repository's own files; none ships to visitors.
+Every one was already permitted by the ranges in `package.json`, so a plain
+`yarn upgrade` cleared them with no semver changes.
+
+### 4d. `next` upgraded 16.1.0 → 16.3.1 — fixes `sharp` — fixed
+
+An earlier draft of this report listed the `sharp` libvips CVEs
+(CVE-2026-33327 / 33328 / 35590 / 35591) as unfixable, because `next` 16.1.0
+pinned `sharp` to `^0.34.4` and forcing 0.35.x would have crossed a 0.x major.
+
+That was solved upstream: `next` 16.3.1 widens the range to `^0.35.3`, which is
+patched. 16.3.1 satisfies the `^16.1.0` already declared in `package.json`, so
+this is a lockfile refresh rather than a semver change. `eslint-config-next` was
+moved from its exact `16.1.0` pin to `16.3.1` to match.
+
+`sharp` now resolves to 0.35.3 and there are no remaining advisories anywhere in
+the tree.
 
 ### 5. Unused `@next/third-parties` dependency — Low — fixed
 
@@ -128,15 +177,21 @@ deliberately *not* added: Google My Maps needs `allow-scripts` plus
 sandboxing a cross-origin frame, and the CSP `frame-src` directive already
 restricts what may be framed here.
 
-## Accepted risks (no action available)
+## Accepted risks
 
-- **`sharp` 0.34.5** — inherits four libvips CVEs (CVE-2026-33327/33328/35590/
-  35591). It is an optional dependency of `next` pinned to `^0.34.4`; forcing
-  0.35.x via a resolution risks breaking image optimisation and was not done.
-  Exposure is limited: Next's image optimizer only accepts local paths or
-  configured `remotePatterns`, and no remote patterns are configured, so the
-  only images reaching sharp are the ones in `public/`. Upgrade when `next`
-  widens its range.
+- **The two `resolutions` overrides are a maintenance debt.** `postcss` and
+  `nanoid` are pinned above what `next` and `tailwindcss` ask for. That is
+  correct today, but it means this project is running those two packages at
+  versions its own dependencies have not tested against, and the pins will
+  silently keep applying after upstream catches up. Drop each entry once
+  `next`/`tailwindcss` declare ranges that already exclude the vulnerable
+  versions.
+- **`next` precompiles some dependencies into `next/dist/compiled/`**, including
+  its own copy of `nanoid` and ten `postcss-*` plugins. These are bundled
+  source, not lockfile entries, so neither `resolutions` nor Dependabot can
+  reach them — an alert on those would have to come from `next` itself. Not a
+  live concern here (build-time code over this repo's own files), but it is the
+  blind spot in all of the dependency work above.
 - **Adobe Typekit stylesheet** (`app/globals.css:1`) is a fourth third-party
   origin, loaded on every page and able to see every visitor. It is now
   explicitly allow-listed in the CSP rather than silently permitted. Self-hosting
@@ -156,14 +211,21 @@ restricts what may be framed here.
   reverse-tabnabbing exposure and no `rel="noopener"` gap.
 - **Untrusted input** — the consent value read from `localStorage` is compared
   against a fixed set of strings and never interpolated into markup or script.
-- **`next` itself** — no advisories against 16.1.0 other than the transitive
-  ones above.
+- **Whole dependency tree** — all 422 packages in `yarn.lock` were checked
+  against the npm advisory database *at their exact locked versions*: zero
+  advisories remain.
 
 ## Verification
 
-- Exactly one `postcss` (8.5.25) resolves in the tree, and the built CSS bundle
-  was diffed for the Typekit import, Tailwind reset, utility classes, brand
-  colours and font faces after the override.
+- Dependency checking must be done against the resolved versions in
+  `yarn.lock`, not by re-resolving `package.json`. Re-resolving quietly picks
+  newer versions than the lockfile pins and under-reports: it showed "0
+  vulnerabilities" at a point when the real tree still had 25. The repeatable
+  check is to POST the lockfile's `{name: [versions]}` map to
+  `https://registry.npmjs.org/-/npm/v1/security/advisories/bulk`.
+- Exactly one `postcss` resolves in the tree, and the built CSS bundle was
+  checked for the Typekit import, Tailwind reset, utility classes, brand colours
+  and font faces after the override and again after the `next` upgrade.
 - `yarn build` and `yarn lint` both pass. (`yarn lint` also failed on `main`,
   on a pre-existing `react-hooks/set-state-in-effect` error in
   `ConsentBanner.tsx`; the consent rewrite in finding 2 replaced that effect
