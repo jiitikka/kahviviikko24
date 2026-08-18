@@ -39,6 +39,30 @@ plus `X-Frame-Options: DENY`, `nosniff`, `strict-origin-when-cross-origin`,
 a `Permissions-Policy` denying camera/microphone/geolocation/payment/USB,
 `Strict-Transport-Security`, and `poweredByHeader: false`.
 
+> **Deployment caveat — verify this after the first deploy.** `headers()` in
+> `next.config.mjs` is implemented by the **Next.js server at request time**. It
+> is honoured when Amplify hosts the app on its compute platform (`WEB_COMPUTE`,
+> "Next.js SSR"), and **silently ignored** when Amplify hosts it as a purely
+> static app (`WEB` — S3 + CloudFront serving prerendered files). Every route in
+> this project prerenders to static HTML, so either platform is plausible here
+> and the difference is invisible at build time. The verification below was done
+> against `next start`, which is the server — it does not prove the production
+> hosting applies these headers.
+>
+> Decisive check once deployed:
+>
+> ```
+> curl -sI https://<production-domain>/ | grep -i '^content-security-policy'
+> ```
+>
+> No output means the whole header set above is absent in production and this
+> finding is *not* actually fixed for visitors. The remedy then is Amplify custom
+> headers (console → Hosting → Custom headers, or a `customHeaders:` block in
+> `amplify.yml`) carrying the same values. Note that adding an `amplify.yml` to
+> a repo whose build settings currently live in the console **overrides** those
+> console settings, so prefer the console route unless the build config is
+> already in the file. Do not configure both mechanisms with differing policies.
+
 **Known limitation:** `script-src` still needs `'unsafe-inline'`, because the
 consent gate and Next's own hydration payload are inline scripts. Removing it
 means switching to per-request nonces, which requires routing every response
@@ -231,7 +255,12 @@ restricts what may be framed here.
   `ConsentBanner.tsx`; the consent rewrite in finding 2 replaced that effect
   with `useSyncExternalStore`, which clears it.)
 - Headers confirmed on the wire against `next start` for both `/` and
-  `/privacy`; `X-Powered-By` confirmed absent.
+  `/privacy`; `X-Powered-By` confirmed absent. This proves the config is
+  correct, **not** that production serves it — see the deployment caveat under
+  finding 1, which must be re-checked against the deployed URL.
+- There is no CI on this repository (zero check runs configured) and the
+  Amplify pipeline deploys automatically on merge to `main`, so this local
+  verification is the only gate this change passes through.
 - The consent gate was driven in headless Chromium across three states, with
   all requests to Google/Hotjar domains intercepted and counted, and the page
   scrolled to force lazily-loaded subresources:
