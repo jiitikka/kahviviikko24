@@ -1,27 +1,48 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useSyncExternalStore } from "react";
+import {
+  CONSENT_STORAGE_KEY,
+  CONSENT_EVENT,
+  type ConsentState,
+} from "@/app/consent";
 
-type ConsentState = "unknown" | "accepted" | "rejected";
+const subscribe = (onStoreChange: () => void) => {
+  // `storage` covers other tabs, CONSENT_EVENT covers this one.
+  window.addEventListener("storage", onStoreChange);
+  window.addEventListener(CONSENT_EVENT, onStoreChange);
+  return () => {
+    window.removeEventListener("storage", onStoreChange);
+    window.removeEventListener(CONSENT_EVENT, onStoreChange);
+  };
+};
 
-const STORAGE_KEY = "tkv24-analytics-consent-v1";
+const getSnapshot = (): ConsentState => {
+  try {
+    const stored = window.localStorage.getItem(CONSENT_STORAGE_KEY);
+    return stored === "accepted" || stored === "rejected" ? stored : "unknown";
+  } catch (e) {
+    // Storage blocked (private mode, cookie settings): treat as no choice yet.
+    return "unknown";
+  }
+};
+
+// No stored choice is visible while prerendering.
+const getServerSnapshot = (): ConsentState => "unknown";
 
 const ConsentBanner = () => {
-  const [consent, setConsent] = useState<ConsentState>("unknown");
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored === "accepted" || stored === "rejected") {
-      setConsent(stored as ConsentState);
-    }
-  }, []);
+  const consent = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const handleChoice = (choice: "accepted" | "rejected") => {
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem(STORAGE_KEY, choice);
+    try {
+      window.localStorage.setItem(CONSENT_STORAGE_KEY, choice);
+    } catch (e) {
+      // Storage unavailable. Fall through so the banner still closes; the
+      // analytics loaders re-read storage themselves and stay off.
     }
-    setConsent(choice);
+    // `storage` does not fire in the tab that made the change, so notify this
+    // tab's analytics loaders — and this component — directly.
+    window.dispatchEvent(new CustomEvent(CONSENT_EVENT, { detail: choice }));
   };
 
   if (consent !== "unknown") {
