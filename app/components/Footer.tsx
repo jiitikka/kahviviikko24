@@ -83,14 +83,9 @@ const Footer = () => {
           <span className="text-[14px]" style={{ color: 'rgba(247, 243, 238, 0.72)' }}>
             1.–11.10.2026
           </span>
-          <p
-            className="m-0 mt-2 max-w-[280px] bg-white px-4 py-[10px] font-body text-[13px] leading-[1.5] text-coffee"
-            style={{
-              borderRadius: '22px 34px 20px 30px / 30px 18px 32px 20px',
-            }}
-          >
-            Huomaathan, että epäkantiskortti on voimassa 18.10. asti.
-          </p>
+          <span className="text-right text-[13px]" style={{ color: dim }}>
+            Epäkantiskortti voimassa 18.10. asti.
+          </span>
         </div>
       </div>
 
