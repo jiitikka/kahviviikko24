@@ -3,10 +3,27 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { CONTACT_EMAIL_DISPLAY } from '@/app/data/content';
 
+const description =
+  'Mitä tietoja tampereenkahviviikko.fi kerää, mihin niitä käytetään ja miten voit hallita valintojasi.';
+
 export const metadata: Metadata = {
   title: 'Tietosuojaseloste — Tampereen kahviviikko',
-  description:
-    'Mitä tietoja tampereenkahviviikko.fi kerää, mihin niitä käytetään ja miten voit hallita valintojasi.',
+  description,
+  alternates: {
+    canonical: '/tietosuojaseloste',
+  },
+  // Without these the page inherits the home page's Open Graph copy, so
+  // sharing the policy showed the event's marketing line. A child openGraph
+  // replaces the parent's outright rather than merging, so siteName, locale
+  // and type have to be repeated here.
+  openGraph: {
+    title: 'Tietosuojaseloste — Tampereen kahviviikko',
+    description,
+    url: '/tietosuojaseloste',
+    siteName: 'Tampereen kahviviikko',
+    locale: 'fi_FI',
+    type: 'website',
+  },
 };
 
 const h2 = 'm-0 font-display text-[clamp(21px,3.4vw,26px)] font-extrabold tracking-[-0.02em]';
