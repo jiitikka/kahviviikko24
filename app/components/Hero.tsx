@@ -170,7 +170,7 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="relative z-[1] flex min-w-[280px] shrink basis-[380px] grow-0 justify-center">
+      <div className="relative z-[1] hidden min-w-[280px] shrink basis-[380px] grow-0 justify-center min-[820px]:flex">
         <StampCard />
       </div>
     </section>
