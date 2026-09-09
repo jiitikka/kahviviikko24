@@ -20,6 +20,17 @@ export const metadata: Metadata = {
     siteName: 'Tampereen kahviviikko',
     locale: 'fi_FI',
     type: 'website',
+    images: [
+      {
+        url: '/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'Tampereen kahviviikko 1.–11.10.2026 — parempaa kahvia kansalle',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
   },
   verification: {
     google: 'fJTi1kgCeV0uuPKqLrrQxaHfU7JZoXZCMZoxa6ue1mE',
