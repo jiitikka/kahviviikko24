@@ -208,7 +208,7 @@ const Cafes = () => {
       cafe,
       index,
       dist: undefined as number | undefined,
-    }));
+    })).sort((a, b) => a.cafe.name.localeCompare(b.cafe.name, 'fi'));
 
     if (districts.length) {
       list = list.filter(({ cafe }) => districts.includes(cafe.district));

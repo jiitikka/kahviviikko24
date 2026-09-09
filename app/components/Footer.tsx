@@ -49,7 +49,7 @@ const Footer = () => {
           </span>
           <div className="flex flex-col gap-2">
             <a
-              href="https://instagram.com/tampereen_kahviviikko"
+              href="https://instagram.com/tampereenkahviviikko"
               className="no-underline"
             >
               Instagram
