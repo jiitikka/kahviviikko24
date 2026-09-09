@@ -2,29 +2,30 @@
 
 // Content Security Policy.
 //
-// 'unsafe-inline' is required in script-src because the analytics consent gate
-// in app/layout.tsx and app/scripts/HotjarSnippet.tsx runs as inline <Script>
-// tags, and Next.js emits inline hydration scripts. Replacing it with a nonce
-// would mean rendering every page through middleware, which this otherwise
-// static marketing site does not need. The remaining directives still block
-// framing, form hijacking, plugin content, and any script or connection
-// destination outside the allow-list below.
+// 'unsafe-inline' is required in script-src because Next.js emits inline
+// hydration scripts. Replacing it with a nonce would mean rendering every page
+// through middleware, which this otherwise static marketing site does not need.
+// The remaining directives still block framing, form hijacking, plugin content,
+// and any script or connection destination outside the allow-list below.
+//
+// The 2026 redesign narrowed this list: Google Analytics and the Adobe Typekit
+// stylesheet are gone, the Google Maps iframe was replaced by a Leaflet map,
+// and the fonts are self-hosted — so those origins are no longer allow-listed.
 const contentSecurityPolicy = [
   "default-src 'self'",
-  // Google Analytics (gtag) and Hotjar.
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://*.googletagmanager.com https://static.hotjar.com https://script.hotjar.com",
-  // Tailwind and next/image emit inline style attributes; app/globals.css
-  // imports an Adobe Typekit stylesheet from use.typekit.net, which in turn
-  // pulls a tracking stylesheet (p.css) from p.typekit.net — both origins are
-  // needed or the chained request is blocked.
-  "style-src 'self' 'unsafe-inline' https://use.typekit.net https://p.typekit.net",
-  "img-src 'self' data: blob: https://*.google-analytics.com https://*.googletagmanager.com https://*.hotjar.com",
-  // next/font/google self-hosts its fonts at build time; Typekit serves its
-  // own font files from use.typekit.net / p.typekit.net.
-  "font-src 'self' data: https://use.typekit.net https://p.typekit.net",
-  "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.hotjar.com https://*.hotjar.io wss://*.hotjar.com",
-  // The participating-cafes map embed, plus Hotjar's helper frame.
-  "frame-src https://www.google.com https://maps.google.com https://vars.hotjar.com",
+  // Umami (statistics) and Hotjar (behaviour analytics), both consent-gated.
+  "script-src 'self' 'unsafe-inline' https://cloud.umami.is https://static.hotjar.com https://script.hotjar.com",
+  // Tailwind, next/image and this site's inline style objects emit inline
+  // style attributes. Fonts are self-hosted, so no third-party origin here.
+  "style-src 'self' 'unsafe-inline'",
+  // OpenStreetMap serves the Leaflet tiles for the Kahvilat map view.
+  "img-src 'self' data: blob: https://*.tile.openstreetmap.org https://*.hotjar.com",
+  "font-src 'self' data:",
+  // Umami serves its script from cloud.umami.is but posts events to
+  // gateway.umami.is — omit the gateway and it silently collects nothing.
+  "connect-src 'self' https://cloud.umami.is https://gateway.umami.is https://*.hotjar.com https://*.hotjar.io wss://*.hotjar.com",
+  // Hotjar's helper frame. The site itself no longer embeds any iframe.
+  "frame-src https://vars.hotjar.com",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -51,8 +52,10 @@ const securityHeaders = [
     value: 'strict-origin-when-cross-origin',
   },
   {
+    // geolocation stays enabled for this origin: the Kahvilat "Lähellä minua"
+    // filter sorts cafés by distance and needs navigator.geolocation.
     key: 'Permissions-Policy',
-    value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=()',
+    value: 'camera=(), microphone=(), geolocation=(self), payment=(), usb=()',
   },
   {
     key: 'Strict-Transport-Security',
@@ -69,6 +72,11 @@ const nextConfig = {
         source: '/:path*',
         headers: securityHeaders,
       },
+    ];
+  },
+  async redirects() {
+    return [
+      { source: '/privacy', destination: '/tietosuojaseloste', permanent: true },
     ];
   },
 };

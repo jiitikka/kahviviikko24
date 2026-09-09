@@ -1,25 +1,31 @@
-import Hero from "./components/Hero";
-import About from "./components/About";
-import CafesParticipating from "./components/CafesParticipating";
-import EventTimeline from "./components/EventTimeline";
-import Organizers from "./components/Organizers";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Faq from "./components/Faq";
-import CafeMap from "./components/CafeMap";
+import Header from './components/Header';
+import Hero from './components/Hero';
+import About from './components/About';
+import TicketSection from './components/TicketSection';
+import Schedule from './components/Schedule';
+import Cafes from './components/Cafes';
+import Perky from './components/Perky';
+import Partners from './components/Partners';
+import Faq from './components/Faq';
+import Footer from './components/Footer';
+import TicketDialogProvider from './components/TicketDialogProvider';
+import { SHOW_PERKY } from './config';
 
 export default function Home() {
   return (
-    <main>
-      <Hero/>
-      <Header/>
-      <About/>
-      <CafesParticipating/>
-      <CafeMap/>
-      <EventTimeline/>
-      <Faq/>
-      <Organizers/>
-      <Footer/>
-    </main>
+    <TicketDialogProvider>
+      <Header />
+      <main id="sisalto" tabIndex={-1}>
+        <Hero />
+        <About />
+        <TicketSection />
+        <Schedule />
+        <Cafes />
+        {SHOW_PERKY && <Perky />}
+        <Partners />
+        <Faq />
+      </main>
+      <Footer />
+    </TicketDialogProvider>
   );
 }

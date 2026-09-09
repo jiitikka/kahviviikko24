@@ -7,6 +7,11 @@ dependency tree and git history.
 > alerts are raised against the default branch, so any open alert stays open
 > until this is merged into `main`.
 
+> **This audit describes the 2024 site.** The 2026 redesign replaced most of
+> the code it examines. Every fix here was kept, but the CSP allow-list and one
+> header changed with it — see the addendum at the end before acting on the
+> post-deploy checklist.
+
 ## What this application is
 
 A statically prerendered Next.js 16 marketing site for an event. It has **no
@@ -293,3 +298,49 @@ confirm there are no `Content Security Policy` violations — specifically that
 the Typekit webfonts still render and the cafes map still displays. Those are
 the two third-party surfaces the CSP constrains, and the two the sandboxed test
 could not fully exercise.
+
+---
+
+## Addendum — the 2026 redesign
+
+The redesign kept every fix above. The dependency work (findings 4, 4b, 4c, 4d
+and 5) carried over untouched: `resolutions` still pins `postcss` and `nanoid`,
+and `next` stays on 16.3.1. What changed:
+
+**Third-party origins removed, so the CSP allow-list shrank.**
+
+- Google Analytics is gone entirely — the hardcoded measurement ID went with
+  it. `googletagmanager` / `google-analytics` are no longer allow-listed.
+- The Adobe Typekit stylesheet is gone; Bricolage Grotesque and Literata are
+  self-hosted `woff2` files. That closes the accepted risk under "Adobe Typekit
+  stylesheet" — the fourth third-party origin no longer exists, so `style-src`
+  and `font-src` are back to `'self'`.
+- The Google Maps iframe (finding 7) was replaced by a Leaflet map, so the site
+  embeds no iframe at all. `frame-src` now only carries Hotjar's helper frame.
+
+**Origins added.**
+
+- `cloud.umami.is` in `script-src` and `connect-src`, plus **`gateway.umami.is`
+  in `connect-src`** — Umami loads its script from one host and posts events to
+  the other, and omitting the gateway makes it silently collect nothing.
+- `*.tile.openstreetmap.org` in `img-src` for the Leaflet map tiles.
+
+**`Permissions-Policy` now allows geolocation for this origin**
+(`geolocation=(self)` rather than `geolocation=()`). The Kahvilat section has a
+"Lähellä minua" filter that sorts cafés by distance via
+`navigator.geolocation`; the original blanket denial would have disabled it.
+Camera, microphone, payment and USB stay denied.
+
+**Finding 2 (consent had no effect until reload) no longer applies as written.**
+`app/consent.ts`, the old banner and `HotjarSnippet.tsx` were replaced by
+`app/components/consent/`, which uses the same `useSyncExternalStore` approach
+plus its own listener set for same-tab notification. Consent is now per-category
+(statistics vs. behaviour analytics) under the key `tkv-consent-v1`, and
+withdrawing a category reloads the page, because an injected script cannot be
+unloaded.
+
+**Revised post-deploy check.** Load the site with the console open and confirm
+no CSP violations, specifically: the self-hosted fonts render, the Kahvilat map
+tiles load after switching to Kartta, and — after accepting analytics — Umami
+reaches `gateway.umami.is`. Typekit and the Google Maps embed no longer exist,
+so the original checklist's two surfaces do not apply.
