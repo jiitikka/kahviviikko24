@@ -3,10 +3,36 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { CONTACT_EMAIL_DISPLAY } from '@/app/data/content';
 
+const description =
+  'Mitä tietoja tampereenkahviviikko.fi kerää, mihin niitä käytetään ja miten voit hallita valintojasi.';
+
 export const metadata: Metadata = {
   title: 'Tietosuojaseloste — Tampereen kahviviikko',
-  description:
-    'Mitä tietoja tampereenkahviviikko.fi kerää, mihin niitä käytetään ja miten voit hallita valintojasi.',
+  description,
+  alternates: {
+    canonical: '/tietosuojaseloste',
+  },
+  // Without these the page inherits the home page's Open Graph copy, so
+  // sharing the policy showed the event's marketing line. A child openGraph
+  // replaces the parent's outright rather than merging, so siteName, locale,
+  // type and the image have to be repeated here — and the image matters,
+  // because the root sets a summary_large_image Twitter card.
+  openGraph: {
+    title: 'Tietosuojaseloste — Tampereen kahviviikko',
+    description,
+    url: '/tietosuojaseloste',
+    siteName: 'Tampereen kahviviikko',
+    locale: 'fi_FI',
+    type: 'website',
+    images: [
+      {
+        url: '/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'Tampereen kahviviikko 1.–11.10.2026 — parempaa kahvia kansalle',
+      },
+    ],
+  },
 };
 
 const h2 = 'm-0 font-display text-[clamp(21px,3.4vw,26px)] font-extrabold tracking-[-0.02em]';
@@ -46,15 +72,7 @@ export default function Tietosuojaseloste() {
         className="tkv-gutter-narrow flex flex-col gap-[clamp(28px,4vw,40px)] pb-[clamp(56px,9vw,96px)] pt-[clamp(36px,7vw,72px)]"
       >
         <div className="flex flex-col gap-[14px]">
-          <span
-            className="self-start px-[10px] py-[5px] font-display text-[11px] font-medium uppercase tracking-[0.16em]"
-            style={{
-              background: 'var(--coffee-coral)',
-              border: '1.5px solid var(--coffee-black)',
-            }}
-          >
-            Tietosuoja
-          </span>
+          <span className="tkv-label">Tietosuoja</span>
           <h1 className="m-0 font-display text-[clamp(30px,6vw,44px)] font-extrabold leading-[1.08] tracking-[-0.03em] [text-wrap:pretty]">
             Tietosuojaseloste ja evästekäytännöt
           </h1>
