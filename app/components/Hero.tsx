@@ -152,7 +152,8 @@ const Hero = () => {
           palkitsee eri kahviloiden kiertämisestä.
         </p>
 
-        <div className="relative z-[1] mt-4 flex flex-wrap gap-[14px]">
+        {/* Column below 820px so the buttons stretch to the full width. */}
+        <div className="relative z-[1] mt-4 flex flex-col gap-[14px] min-[820px]:flex-row min-[820px]:flex-wrap">
           <Button
             variant="coral"
             size="lg"

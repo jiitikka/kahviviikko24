@@ -168,8 +168,28 @@
   }
 
   .tkv-cafe-tile {
+    width: 132px;
     outline-offset: 4px;
     transition: transform 160ms var(--ease-slide);
+  }
+
+  .tkv-cafe-blob {
+    width: 108px;
+    height: 108px;
+  }
+
+  /* A third 132px tile only fits from about 480px up, so below that two tiles
+     sat in the middle of a wide empty gutter. Let each take half the row. */
+  @media (max-width: 479px) {
+    .tkv-cafe-tile {
+      width: min(calc((100% - clamp(16px, 3vw, 30px)) / 2), 170px);
+    }
+
+    .tkv-cafe-blob {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+    }
   }
 
   .tkv-cafe-tile:hover {
