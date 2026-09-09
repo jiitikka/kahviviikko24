@@ -12,8 +12,12 @@ export const SHOW_ADVANCED_FILTERS = false;
  * changing one in Amplify needs a redeploy — and an unset var means the tool
  * stays off, which is what keeps dev and branch previews out of the stats.
  */
+const hotjarId = process.env.NEXT_PUBLIC_HOTJAR_ID;
+
 export const ANALYTICS = {
   umamiSrc: process.env.NEXT_PUBLIC_UMAMI_SRC ?? null,
   umamiWebsiteId: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID ?? null,
-  hotjarId: process.env.NEXT_PUBLIC_HOTJAR_ID ?? null,
+  // Digits only, so a misconfigured build variable cannot reshape the script
+  // URL it is interpolated into (see finding 3 in SECURITY-AUDIT.md).
+  hotjarId: hotjarId && /^\d+$/.test(hotjarId) ? hotjarId : null,
 };
