@@ -63,7 +63,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="flex min-w-[200px] flex-1 basis-[220px] flex-col items-end gap-[6px]">
+        <div className="flex min-w-[200px] flex-1 basis-[220px] flex-col items-start gap-[6px] min-[820px]:items-end">
           <a
             href="#"
             aria-label="Takaisin sivun alkuun"
@@ -72,9 +72,9 @@ const Footer = () => {
             <Image
               src="/brand/papu-yksivari-valkoinen.svg"
               alt=""
-              width={26}
-              height={26}
-              className="w-[26px] flex-none"
+              width={103}
+              height={105}
+              className="h-auto w-[26px] flex-none"
             />
             <span className="whitespace-nowrap font-display text-[clamp(16px,2vw,19px)] font-extrabold leading-[1.2] tracking-[-0.02em] text-cream">
               Tampereen kahviviikko
@@ -83,7 +83,10 @@ const Footer = () => {
           <span className="text-[14px]" style={{ color: 'rgba(247, 243, 238, 0.72)' }}>
             1.–11.10.2026
           </span>
-          <span className="text-right text-[13px]" style={{ color: dim }}>
+          <span
+            className="text-left text-[13px] min-[820px]:text-right"
+            style={{ color: dim }}
+          >
             Epäkantiskortti voimassa 18.10. asti.
           </span>
         </div>

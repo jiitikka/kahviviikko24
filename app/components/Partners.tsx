@@ -11,7 +11,7 @@ const Partners = () => (
       </p>
     </div>
 
-    <div className="flex min-w-[260px] flex-1 basis-[420px] flex-wrap items-center justify-end gap-[clamp(24px,3.6vw,54px)]">
+    <div className="flex min-w-[260px] flex-1 basis-[420px] flex-wrap items-center justify-start gap-[clamp(24px,3.6vw,54px)] min-[820px]:justify-end">
       {PARTNERS.map((partner) => (
         <a
           key={partner.name}

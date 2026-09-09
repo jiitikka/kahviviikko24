@@ -33,18 +33,20 @@ const About = () => (
       aria-hidden="true"
       className="relative block w-[min(38vw,165px)] shrink basis-[165px] grow-0"
     >
+      {/* Dimensions are the files' own, so the reserved box matches the
+          rendered aspect ratio; CSS sets the displayed size. */}
       <Image
         src="/brand/cup.svg"
         alt=""
-        width={165}
-        height={220}
+        width={543}
+        height={817}
         className="block h-auto w-full"
       />
       <Image
         src="/brand/papu-yksivari-valkoinen.svg"
         alt=""
-        width={56}
-        height={56}
+        width={103}
+        height={105}
         className="absolute left-1/2 top-[57%] h-auto w-[34%] -translate-x-1/2 -translate-y-1/2"
       />
     </span>

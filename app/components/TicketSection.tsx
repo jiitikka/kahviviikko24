@@ -40,9 +40,12 @@ const TicketSection = () => {
             </li>
           ))}
         </ol>
-        <Button variant="coral" size="lg" onClick={ticket.open}>
-          Mistä kortin saa?
-        </Button>
+        {/* Column below 820px so the button stretches to the full width. */}
+        <div className="flex flex-col min-[820px]:block">
+          <Button variant="coral" size="lg" onClick={ticket.open}>
+            Mistä kortin saa?
+          </Button>
+        </div>
       </div>
 
       <div

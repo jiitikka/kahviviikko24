@@ -557,10 +557,10 @@ const Cafes = () => {
               target="_blank"
               rel="noopener"
               title={cafe.name}
-              className="tkv-cafe-tile flex w-[132px] cursor-pointer flex-col items-center gap-[10px] no-underline"
+              className="tkv-cafe-tile flex cursor-pointer flex-col items-center gap-[10px] no-underline"
             >
               <span
-                className="flex h-[108px] w-[108px] flex-shrink-0 items-center justify-center"
+                className="tkv-cafe-blob flex flex-shrink-0 items-center justify-center"
                 style={{
                   background: cafe.fill,
                   border: '1.5px solid var(--coffee-black)',
@@ -569,12 +569,12 @@ const Cafes = () => {
                     'border-radius 400ms cubic-bezier(.4,0,.2,1), background 200ms ease',
                 }}
               >
-                {/* Logos are not square: cap the height and let the width flex. */}
+                {/* Logos are not square: cap the height and let the width flex.
+                    Both are percentages of the blob so they track its size. */}
                 <span
                   style={{
                     width: '78%',
-                    maxWidth: 84,
-                    height: 56,
+                    height: '52%',
                     flexShrink: 0,
                     pointerEvents: 'none',
                     backgroundImage: `url("${cafe.logo}")`,
