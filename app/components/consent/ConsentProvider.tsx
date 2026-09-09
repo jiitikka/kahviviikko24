@@ -63,16 +63,12 @@ const applyConsent = ({ stats, behavior }: Consent) => {
   if (stats && a.umamiSrc && a.umamiWebsiteId) {
     loadScript(a.umamiSrc, { 'data-website-id': a.umamiWebsiteId });
   }
-  if (behavior) {
-    if (a.hotjarId) {
-      (window as unknown as { _hjSettings: unknown })._hjSettings = {
-        hjid: Number(a.hotjarId),
-        hjsv: 6,
-      };
-      loadScript(`https://static.hotjar.com/c/hotjar-${a.hotjarId}.js?sv=6`);
-    } else if (a.clarityId) {
-      loadScript(`https://www.clarity.ms/tag/${a.clarityId}`);
-    }
+  if (behavior && a.hotjarId) {
+    (window as unknown as { _hjSettings: unknown })._hjSettings = {
+      hjid: Number(a.hotjarId),
+      hjsv: 6,
+    };
+    loadScript(`https://static.hotjar.com/c/hotjar-${a.hotjarId}.js?sv=6`);
   }
 };
 

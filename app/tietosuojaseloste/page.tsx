@@ -100,12 +100,12 @@ export default function Tietosuojaseloste() {
             </Card>
             <Card title="Tilastointi — Umami">
               Kertoo kävijämäärät ja sen, mitkä sisällöt kiinnostavat. Umami on
-              itse ylläpitämämme, evästeetön tilastointityökalu: se ei tallenna
-              IP-osoitteita eikä seuraa kävijöitä sivustojen välillä, ja tiedot
-              pysyvät EU-alueella. Peruste: suostumus.
+              evästeetön tilastointityökalu: se ei tallenna IP-osoitteita eikä
+              seuraa kävijöitä sivustojen välillä. Palvelun tarjoaa Umami Cloud.
+              Peruste: suostumus.
             </Card>
-            <Card title="Käytön analytiikka — Hotjar tai Microsoft Clarity">
-              Tuottavat lämpökarttoja ja tallenteita siitä, miten sivustoa
+            <Card title="Käytön analytiikka — Hotjar">
+              Tuottaa lämpökarttoja ja tallenteita siitä, miten sivustoa
               käytetään, jotta voimme korjata hankalia kohtia. Tekstikentät ja
               mahdolliset henkilötiedot peitetään tallenteissa. Peruste:
               suostumus.
@@ -120,9 +120,9 @@ export default function Tietosuojaseloste() {
         <section className={section}>
           <h2 className={h2}>Tietojen luovutus</h2>
           <p className={body}>
-            Emme myy tai luovuta tietoja markkinointitarkoituksiin. Tilastointi
-            pyörii omalla palvelimellamme. Käytön analytiikan osalta tietoja
-            käsittelee puolestamme Hotjar tai Microsoft Clarity, joka voi
+            Emme myy tai luovuta tietoja markkinointitarkoituksiin.
+            Tilastoinnin osalta tietoja käsittelee puolestamme Umami. Käytön
+            analytiikan osalta tietoja käsittelee puolestamme Hotjar, joka voi
             käsitellä niitä myös EU- ja ETA-alueen ulkopuolella; siirto
             perustuu Euroopan komission vakiolausekkeisiin. Lisäksi tietoja
             käsittelee sivuston tekninen ylläpitäjä.

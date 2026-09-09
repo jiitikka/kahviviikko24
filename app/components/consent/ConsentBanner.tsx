@@ -136,8 +136,8 @@ const ConsentBanner = ({
             <p className="m-0 font-body text-[15px] leading-[1.6] text-coffee [text-wrap:pretty]">
               Käytämme välttämättömiä evästeitä sivuston toimintaan.
               Suostumuksellasi käytämme myös tilasto- ja analytiikkatyökaluja
-              (Umami sekä Hotjar tai Microsoft Clarity) sivuston kehittämiseen.
-              Voit muuttaa valintaasi milloin tahansa.
+              (Umami ja Hotjar) sivuston kehittämiseen. Voit muuttaa valintaasi
+              milloin tahansa.
             </p>
             <Link
               href="/tietosuojaseloste"
@@ -163,7 +163,7 @@ const ConsentBanner = ({
             />
             <Category
               title="Käytön analytiikka"
-              description="Hotjar tai Microsoft Clarity: klikkaukset ja lämpökartat, joilla parannamme sivustoa."
+              description="Hotjar: klikkaukset ja lämpökartat, joilla parannamme sivustoa."
               checked={behavior}
               onToggle={onToggleBehavior}
             />
