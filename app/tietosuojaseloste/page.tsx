@@ -101,8 +101,8 @@ export default function Tietosuojaseloste() {
             <Card title="Tilastointi — Umami">
               Kertoo kävijämäärät ja sen, mitkä sisällöt kiinnostavat. Umami on
               evästeetön tilastointityökalu: se ei tallenna IP-osoitteita eikä
-              seuraa kävijöitä sivustojen välillä. Palvelun tarjoaa Umami Cloud.
-              Peruste: suostumus.
+              seuraa kävijöitä sivustojen välillä. Palvelun tarjoaa Umami Cloud,
+              ja tiedot säilytetään EU-alueella. Peruste: suostumus.
             </Card>
             <Card title="Käytön analytiikka — Hotjar">
               Tuottaa lämpökarttoja ja tallenteita siitä, miten sivustoa
