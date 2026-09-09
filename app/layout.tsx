@@ -24,6 +24,9 @@ export default function RootLayout({
   return (
     <html lang="fi" className={`${bricolage.variable} ${literata.variable}`}>
       <body>
+        <a href="#sisalto" className="tkv-skip-link">
+          Siirry sisältöön
+        </a>
         <ConsentProvider>{children}</ConsentProvider>
       </body>
     </html>

@@ -139,6 +139,7 @@ const Cafes = () => {
   const [menu, setMenu] = useState<'district' | 'a11y' | null>(null);
   const [menuSide, setMenuSide] = useState<'left' | 'right'>('left');
   const wrapRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
 
   const mobile = !isDesktop;
 
@@ -157,8 +158,18 @@ const Cafes = () => {
         setMenu(null);
       }
     };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      e.preventDefault();
+      setMenu(null);
+      triggerRef.current?.focus();
+    };
     document.addEventListener('click', onDocClick);
-    return () => document.removeEventListener('click', onDocClick);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('click', onDocClick);
+      document.removeEventListener('keydown', onKeyDown);
+    };
   }, [menu]);
 
   const requestGeo = useCallback(() => {
@@ -196,9 +207,10 @@ const Cafes = () => {
       list.includes(d) ? list.filter((x) => x !== d) : [...list, d]
     );
 
-  const openMenu = (which: 'district' | 'a11y', el: HTMLElement) => {
+  const openMenu = (which: 'district' | 'a11y', el: HTMLButtonElement) => {
     const rect = el.getBoundingClientRect();
     const width = Math.min(280, window.innerWidth - 40);
+    triggerRef.current = el;
     setMenuSide(rect.left + width <= window.innerWidth - 12 ? 'left' : 'right');
     setMenu((m) => (m === which ? null : which));
   };
@@ -349,7 +361,12 @@ const Cafes = () => {
                   <ChevronIcon />
                 </button>
                 {menu === 'district' && (
-                  <span data-menu-panel="" style={menuPanelStyle}>
+                  <span
+                    data-menu-panel=""
+                    role="group"
+                    aria-label="Rajaa sijainnin mukaan"
+                    style={menuPanelStyle}
+                  >
                     <button
                       onClick={() => toggleFeature('near')}
                       aria-pressed={features.includes('near')}
@@ -398,7 +415,12 @@ const Cafes = () => {
                       <ChevronIcon />
                     </button>
                     {menu === 'a11y' && (
-                      <span data-menu-panel="" style={menuPanelStyle}>
+                      <span
+                        data-menu-panel=""
+                        role="group"
+                        aria-label="Rajaa saavutettavuuden mukaan"
+                        style={menuPanelStyle}
+                      >
                         {A11Y_OPTS.map((o) => (
                           <button
                             key={o.key}

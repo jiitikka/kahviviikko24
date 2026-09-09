@@ -22,7 +22,7 @@ const Header = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="sticky top-0 z-50 border-b-rule border-coffee bg-cream">
+    <header className="sticky top-0 z-50 border-b-rule border-coffee bg-cream">
       <div className="tkv-gutter flex items-center justify-between gap-4 py-4">
         <a
           href="#"
@@ -83,7 +83,7 @@ const Header = () => {
           ))}
         </div>
       </nav>
-    </div>
+    </header>
   );
 };
 

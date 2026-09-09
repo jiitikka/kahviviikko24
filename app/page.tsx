@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <TicketDialogProvider>
       <Header />
-      <main>
+      <main id="sisalto" tabIndex={-1}>
         <Hero />
         <About />
         <TicketSection />

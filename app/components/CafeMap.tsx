@@ -71,6 +71,8 @@ const CafeMap = ({ cafes }: { cafes: Cafe[] }) => {
   return (
     <div
       ref={containerRef}
+      role="region"
+      aria-label="Kahvilat kartalla. Ruudukkonäkymässä sama lista linkkeinä."
       className="relative z-0 h-full w-full rounded-md border-rule border-coffee"
       style={{ isolation: 'isolate' }}
     />

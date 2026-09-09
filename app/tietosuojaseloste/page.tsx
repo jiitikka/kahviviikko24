@@ -24,7 +24,7 @@ const Card = ({ title, children }: { title: string; children: string }) => (
 export default function Tietosuojaseloste() {
   return (
     <div className="min-h-screen bg-cream font-body text-coffee">
-      <div className="tkv-gutter-narrow flex items-center gap-[10px] border-b-rule border-coffee bg-cream py-4">
+      <header className="tkv-gutter-narrow flex items-center gap-[10px] border-b-rule border-coffee bg-cream py-4">
         <Image
           src="/brand/papu-musta-halkeama.svg"
           alt=""
@@ -38,9 +38,13 @@ export default function Tietosuojaseloste() {
         >
           Tampereen kahviviikko
         </Link>
-      </div>
+      </header>
 
-      <main className="tkv-gutter-narrow flex flex-col gap-[clamp(28px,4vw,40px)] pb-[clamp(56px,9vw,96px)] pt-[clamp(36px,7vw,72px)]">
+      <main
+        id="sisalto"
+        tabIndex={-1}
+        className="tkv-gutter-narrow flex flex-col gap-[clamp(28px,4vw,40px)] pb-[clamp(56px,9vw,96px)] pt-[clamp(36px,7vw,72px)]"
+      >
         <div className="flex flex-col gap-[14px]">
           <span
             className="self-start px-[10px] py-[5px] font-display text-[11px] font-medium uppercase tracking-[0.16em]"

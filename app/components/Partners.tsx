@@ -19,6 +19,7 @@ const Partners = () => (
           target="_blank"
           rel="noopener"
           title={partner.name}
+          aria-label={partner.name}
           className="tkv-partner-logo flex min-w-0 shrink basis-auto grow-0 items-center justify-center no-underline"
         >
           {/* The box locks to the logo's own aspect ratio so a wide wordmark

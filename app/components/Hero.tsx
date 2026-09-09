@@ -83,7 +83,7 @@ const StampCard = () => {
                   className="w-[60%]"
                 />
               ) : (
-                <span className="font-display text-[13px] font-bold text-coffee opacity-35">
+                <span className="font-display text-[13px] font-bold text-coffee opacity-70">
                   {i + 1}
                 </span>
               )}

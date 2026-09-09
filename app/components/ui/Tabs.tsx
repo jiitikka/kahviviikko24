@@ -54,7 +54,10 @@ const Tabs = ({ items, active, onChange }: Props) => {
             fontWeight: 700,
             fontSize: 15,
             letterSpacing: '-0.01em',
-            color: active === it.value ? 'var(--coffee-black)' : '#8a7f78',
+            color:
+              active === it.value
+                ? 'var(--coffee-black)'
+                : 'var(--coffee-gray)',
             transition: 'var(--transition-interactive)',
           }}
         >
