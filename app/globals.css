@@ -1,57 +1,172 @@
-@import url("https://use.typekit.net/yni4vft.css");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
+    --coffee-cream: #f7f3ee;
+    --coffee-black: #1a1614;
+    --coffee-coral: #e47174;
+    --coffee-coral-text: #ae4549;
+    --coffee-coral-deep: #4a1b1c;
+    --coffee-coral-pale: #f8c6c8;
+    --coffee-rose: #e3a9a4;
+    --coffee-rose-wash: #e2c5bf;
+    --coffee-blush: #f0d8d4;
+    --coffee-rose-display: #975a57;
+    --coffee-gray: #6e655f;
+    --coffee-gray-line: #c9c0b8;
+
+    --link-default: var(--coffee-coral-text);
+    --link-hover: var(--coffee-coral-deep);
+    --link-on-dark: var(--coffee-coral);
+    --link-on-dark-hover: var(--coffee-coral-pale);
+    --link-plain: var(--coffee-black);
+
+    --radius-sm: 2px;
+    --radius-md: 4px;
+    --border-width: 1.5px;
+
+    --duration-fast: 120ms;
+    --ease-default: ease;
+    --duration-slide: 220ms;
+    --ease-slide: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-interactive: color var(--duration-fast) var(--ease-default),
+      background-color var(--duration-fast) var(--ease-default),
+      border-color var(--duration-fast) var(--ease-default),
+      opacity var(--duration-fast) var(--ease-default);
+    --transition-link: color var(--duration-fast) var(--ease-default),
+      opacity var(--duration-fast) var(--ease-default),
+      text-decoration-color var(--duration-fast) var(--ease-default);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 84px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    margin: 0;
+    background: var(--coffee-cream);
+    color: var(--coffee-black);
+    font-family: var(--font-body);
+  }
+
+  a {
+    color: var(--link-default);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: var(--transition-link);
+  }
+
+  a:hover {
+    color: var(--link-hover);
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  font-family: "FreightText Pro";
-}
+@layer components {
+  /* Keeps the side gutter identical on every section as the viewport narrows. */
+  .tkv-gutter {
+    padding-inline: max(clamp(20px, 5vw, 64px), (100% - 1240px) / 2);
+  }
 
-p, li {
-  font-family: "FreightText Pro";
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 400;
-}
+  .tkv-gutter-narrow {
+    padding-inline: max(clamp(20px, 5vw, 64px), (100% - 900px) / 2);
+  }
 
-h1, h2, h3, h4 {
-  font-family: var(--bebas-neue-font);
-}
+  .tkv-section-y {
+    padding-block: clamp(48px, 9vw, 72px);
+  }
 
-h1 {
-  font-size: 3.75rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
+  .tkv-surface-dark {
+    background: var(--coffee-black);
+    color: var(--coffee-cream);
+  }
 
-h2 {
-  font-size: 2rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
+  .tkv-surface-dark a {
+    color: var(--link-on-dark);
+  }
 
-h3 {
-  font-size: 1.4rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
+  .tkv-surface-dark a:hover {
+    color: var(--link-on-dark-hover);
+  }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .tkv-link-plain {
+    color: var(--link-plain);
+    text-decoration: none;
+    transition: var(--transition-link);
+  }
+
+  .tkv-link-plain:hover {
+    opacity: 0.6;
+  }
+
+  .tkv-surface-dark .tkv-link-plain {
+    color: var(--coffee-cream);
+  }
+
+  /* Irregular blob shape: fixed px radii, never percentages — percentages
+     stretch into ellipses on wider labels. */
+  .tkv-label {
+    display: inline-block;
+    align-self: flex-start;
+    width: fit-content;
+    padding: 8px 16px;
+    background: var(--coffee-coral-pale);
+    color: var(--coffee-black);
+    border-radius: 22px 34px 20px 30px / 30px 18px 32px 20px;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 1.3;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .tkv-h2 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(26px, 5.4vw, 34px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+  }
+
+  .tkv-body {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.65;
+  }
+
+  .tkv-cafe-tile {
+    outline-offset: 4px;
+    transition: transform 160ms var(--ease-slide);
+  }
+
+  .tkv-cafe-tile:hover {
+    transform: translateY(-4px) rotate(-1.5deg);
+  }
+
+  .tkv-partner-logo {
+    transition: transform 160ms ease, filter 160ms ease;
+  }
+
+  .tkv-partner-logo:hover {
+    transform: scale(1.09);
+    filter: brightness(1.08) saturate(1.2);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tkv-cafe-tile:hover,
+    .tkv-partner-logo:hover {
+      transform: none;
+    }
   }
 }

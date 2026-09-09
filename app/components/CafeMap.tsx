@@ -1,11 +1,80 @@
-import React from 'react'
+'use client';
 
-const CafeMap = () => {
+import { useEffect, useRef } from 'react';
+import type { Map as LeafletMap, LayerGroup } from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import type { Cafe } from '@/app/data/cafes';
+
+const CafeMap = ({ cafes }: { cafes: Cafe[] }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<LeafletMap | null>(null);
+  const markersRef = useRef<LayerGroup | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    (async () => {
+      const L = (await import('leaflet')).default;
+      if (cancelled || !containerRef.current) return;
+
+      if (!mapRef.current) {
+        mapRef.current = L.map(containerRef.current, {
+          scrollWheelZoom: false,
+        }).setView([61.498, 23.761], 12);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© OpenStreetMap',
+          maxZoom: 18,
+        }).addTo(mapRef.current);
+        markersRef.current = L.layerGroup().addTo(mapRef.current);
+      }
+
+      const map = mapRef.current;
+      const markers = markersRef.current;
+      if (!map || !markers) return;
+
+      markers.clearLayers();
+      const points: [number, number][] = [];
+
+      cafes.forEach((cafe) => {
+        points.push([cafe.lat, cafe.lng]);
+        L.circleMarker([cafe.lat, cafe.lng], {
+          radius: 9,
+          color: '#1A1614',
+          weight: 1.5,
+          fillColor: '#E47174',
+          fillOpacity: 1,
+        })
+          .addTo(markers)
+          .bindPopup(`<strong>${cafe.name}</strong><br>${cafe.area}`);
+      });
+
+      if (points.length) {
+        map.fitBounds(points, { padding: [40, 40], maxZoom: 14 });
+      }
+      map.invalidateSize();
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [cafes]);
+
+  useEffect(
+    () => () => {
+      mapRef.current?.remove();
+      mapRef.current = null;
+      markersRef.current = null;
+    },
+    []
+  );
+
   return (
-    <div className='flex justify-center w-full bg-black/80'>
-        <iframe className='w-full max-w-[1440px]' src="https://www.google.com/maps/d/u/2/embed?mid=14UzbV4LVQPg3s4P_e9syh01vkAy1CNM&ehbc=2E312F" width="640" height="480"></iframe>
-    </div>
-  )
-}
+    <div
+      ref={containerRef}
+      className="relative z-0 h-full w-full rounded-md border-rule border-coffee"
+      style={{ isolation: 'isolate' }}
+    />
+  );
+};
 
-export default CafeMap
+export default CafeMap;

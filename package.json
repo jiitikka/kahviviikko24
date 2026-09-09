@@ -9,13 +9,14 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
-    "@next/third-parties": "^16.1.0",
+    "leaflet": "1.9.4",
     "next": "^16.1.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.3",
+    "@types/leaflet": "^1.9.22",
     "@types/node": "^25.0.3",
     "@types/prop-types": "^15.7.15",
     "@types/react": "^19.2.7",
