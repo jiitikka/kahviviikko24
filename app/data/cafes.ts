@@ -88,8 +88,7 @@ export const CAFES: Cafe[] = [
     a11y: ['step', 'wc', 'space'],
     hours: [[8, 17], [8, 17], [8, 17], [8, 17], [8, 17], [9, 15], null],
     area: 'Lentolantie 2, Kangasala',
-    blurb:
-      'Kangasalan keskustan kahvila, joka pitää epäkantiskortin liikkeellä myös Tampereen ulkopuolella.',
+    blurb: 'Pieni tunnelmallinen kahvila Kangasalan Lentolassa.',
     site: 'https://www.facebook.com/royscafee',
   },
   {
