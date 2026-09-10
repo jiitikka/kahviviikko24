@@ -39,7 +39,7 @@ export const DAYS: Record<string, Day> = {
         time: 'Keskiviikko 7.10. klo 18',
         title: 'PPI x CCF Latte Art Throwdown',
         place: 'Pitkän Päivän Ilta, Tammelan puistokatu 37, Tampere',
-        desc: 'Pitkän Päivän Ilta ja Coffee Competitions Finland järjestävät latte art throwdownin. Lisätietoja lähempänä tapahtumaa.',
+        desc: 'Pitkän Päivän Ilta ja Coffee Competitions Finland järjestävät latte art throwdown -kilpailun osana kahviviikkoa. Lisätietoja seuraa lähempänä tapahtumaa.',
       },
     ],
   },
