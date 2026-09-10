@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Button from './ui/Button';
+import { CAFES } from '@/app/data/cafes';
 import { TICKET_STEPS } from '@/app/data/content';
 import { useTicketDialog } from './TicketDialogProvider';
 
@@ -118,7 +119,7 @@ const TicketSection = () => {
         </div>
 
         <div className="flex items-baseline justify-between border-t-rule border-coffee pt-[10px] font-body text-[11px] text-coffee">
-          <span>15 leimaruutua</span>
+          <span>{CAFES.length} kahvilaa</span>
           <span>Voimassa 18.10.2026 asti</span>
         </div>
       </div>
