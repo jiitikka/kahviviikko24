@@ -2,7 +2,6 @@
 
 import Button from './ui/Button';
 import { DAYS, type Event } from '@/app/data/events';
-import { CONTACT_EMAIL } from '@/app/data/content';
 
 const PinIcon = () => (
   <svg
@@ -45,34 +44,17 @@ const EventCard = ({ event }: { event: Event }) => {
         {event.place}
       </a>
       <p className="m-0 text-[15px] leading-[1.6]">{event.desc}</p>
-      {(event.badge || event.needsSignup) && (
+      {event.badge && (
         <div className="mt-2 flex flex-wrap items-center gap-2">
-          {event.badge && (
-            <span className="inline-block rounded-full border-rule border-coffee px-[10px] py-[3px] font-display text-[11px] font-medium uppercase tracking-[0.16em] text-coffee">
-              {event.badge}
-            </span>
-          )}
-          {event.needsSignup && (
-            <span
-              className="inline-block rounded-full px-[10px] py-[3px] font-display text-[11px] font-medium uppercase tracking-[0.16em] text-coral-text"
-              style={{ border: '1.5px solid var(--coffee-coral-text)' }}
-            >
-              Ilmoittautuminen
-            </span>
-          )}
+          <span className="inline-block rounded-full border-rule border-coffee px-[10px] py-[3px] font-display text-[11px] font-medium uppercase tracking-[0.16em] text-coffee">
+            {event.badge}
+          </span>
         </div>
       )}
-      {event.needsSignup && (
+      {event.signupUrl && (
         <div className="mt-[2px] self-start">
-          <Button
-            variant="coral"
-            onClick={() => {
-              window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-                `Ilmoittautuminen: ${event.title}`
-              )}`;
-            }}
-          >
-            Ilmoittaudu
+          <Button variant="coral" href={event.signupUrl}>
+            {event.signupLabel ?? 'Ilmoittaudu'}
           </Button>
         </div>
       )}
