@@ -212,3 +212,37 @@
     }
   }
 }
+
+/* Leaflet builds its popups at runtime, so these class names never appear in
+   any source file and Tailwind would purge them from @layer components. */
+.leaflet-popup-content {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--coffee-black);
+}
+
+.leaflet-popup-content strong {
+  display: inline-block;
+  margin-bottom: 2px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+
+/* Outranks Leaflet's own `.leaflet-container a` blue, which is declared at
+   the same specificity but loaded after this file. */
+.leaflet-container .leaflet-popup-content a {
+  display: inline-block;
+  margin-top: 6px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--link-default);
+  text-decoration: none;
+}
+
+.leaflet-container .leaflet-popup-content a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}

@@ -5,6 +5,29 @@ import type { Map as LeafletMap, LayerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { Cafe } from '@/app/data/cafes';
 
+const ESCAPES: Record<string, string> = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;',
+};
+
+// Popups take an HTML string, so anything interpolated has to be escaped —
+// an ampersand in a name or URL would otherwise break the markup.
+const esc = (value: string) => value.replace(/[&<>"']/g, (c) => ESCAPES[c]);
+
+const popupHtml = (cafe: Cafe) =>
+  [
+    `<strong>${esc(cafe.name)}</strong>`,
+    esc(cafe.area),
+    cafe.site
+      ? `<a href="${esc(cafe.site)}" target="_blank" rel="noopener">Kahvilan sivut →</a>`
+      : '',
+  ]
+    .filter(Boolean)
+    .join('<br>');
+
 const CafeMap = ({ cafes }: { cafes: Cafe[] }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<LeafletMap | null>(null);
@@ -45,7 +68,7 @@ const CafeMap = ({ cafes }: { cafes: Cafe[] }) => {
           fillOpacity: 1,
         })
           .addTo(markers)
-          .bindPopup(`<strong>${cafe.name}</strong><br>${cafe.area}`);
+          .bindPopup(popupHtml(cafe));
       });
 
       if (points.length) {
