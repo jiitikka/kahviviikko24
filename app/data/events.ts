@@ -6,7 +6,9 @@ export type Event = {
   desc: string;
   /** Price or admission, as an outlined pill. Omit while it is undecided. */
   badge?: string;
-  needsSignup?: boolean;
+  /** Where to sign up, if the event takes registrations. */
+  signupUrl?: string;
+  signupLabel?: string;
 };
 
 export type Day = {
@@ -36,10 +38,14 @@ export const DAYS: Record<string, Day> = {
     label: 'Ke 7.10',
     events: [
       {
-        time: 'Keskiviikko 7.10. klo 18',
+        time: 'Keskiviikko 7.10. klo 18 alkaen',
         title: 'PPI x CCF Latte Art Throwdown',
         place: 'Pitkän Päivän Ilta, Tammelan puistokatu 37, Tampere',
-        desc: 'Pitkän Päivän Ilta ja Coffee Competitions Finland järjestävät latte art throwdown -kilpailun osana kahviviikkoa. Lisätietoja seuraa lähempänä tapahtumaa.',
+        desc: 'Pitkän Päivän Ilta ja Coffee Competitions Finland järjestävät latte art throwdown -kilpailun osana kahviviikkoa, yhteistyössä Oatlyn kanssa. Katsojille vapaa pääsy. Kilpailijoiden osallistumismaksu on 5 € CCF:n Premium- ja Affiliate-jäsenille ja 8 € muille.',
+        badge: 'Katsojille vapaa pääsy',
+        signupUrl:
+          'https://docs.google.com/forms/d/e/1FAIpQLSfctSmO4k-hNSFEAT97ZwhzIwUCNCiZafbrX3Gy7V67_5DZFQ/viewform',
+        signupLabel: 'Ilmoittaudu kilpailuun',
       },
     ],
   },
