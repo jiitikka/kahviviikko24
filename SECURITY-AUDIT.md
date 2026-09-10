@@ -324,6 +324,10 @@ and `next` stays on 16.3.1. What changed:
   in `connect-src`** — Umami loads its script from one host and posts events to
   the other, and omitting the gateway makes it silently collect nothing.
 - `*.tile.openstreetmap.org` in `img-src` for the Leaflet map tiles.
+- `www.clarity.ms` and `*.clarity.ms` in `script-src`, `img-src` and
+  `connect-src`. Microsoft Clarity was added alongside Hotjar in a later
+  change; it beacons to per-region subdomains, so the wildcard is
+  load-bearing rather than tidiness.
 
 **`Permissions-Policy` now allows geolocation for this origin**
 (`geolocation=(self)` rather than `geolocation=()`). The Kahvilat section has a
@@ -337,7 +341,8 @@ Camera, microphone, payment and USB stay denied.
 plus its own listener set for same-tab notification. Consent is now per-category
 (statistics vs. behaviour analytics) under the key `tkv-consent-v1`, and
 withdrawing a category reloads the page, because an injected script cannot be
-unloaded.
+unloaded. The behaviour category covers both Hotjar and Microsoft Clarity;
+either can be switched off by clearing its environment variable.
 
 **Revised post-deploy check.** Load the site with the console open and confirm
 no CSP violations, specifically: the self-hosted fonts render, the Kahvilat map

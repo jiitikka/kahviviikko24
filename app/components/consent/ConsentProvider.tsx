@@ -16,6 +16,8 @@ const CONSENT_KEY = 'tkv-consent-v1';
 
 export type Consent = { stats: boolean; behavior: boolean };
 
+type ClarityQueue = { (...args: unknown[]): void; q?: unknown[] };
+
 const listeners = new Set<() => void>();
 /** Fallback for browsers that block storage, so a choice still applies. */
 let memory: string | null = null;
@@ -63,12 +65,27 @@ const applyConsent = ({ stats, behavior }: Consent) => {
   if (stats && a.umamiSrc && a.umamiWebsiteId) {
     loadScript(a.umamiSrc, { 'data-website-id': a.umamiWebsiteId });
   }
+  // Hotjar and Clarity are independent: both run when the visitor accepts
+  // behaviour analytics, and either can be turned off by clearing its id.
   if (behavior && a.hotjarId) {
     (window as unknown as { _hjSettings: unknown })._hjSettings = {
       hjid: Number(a.hotjarId),
       hjsv: 6,
     };
     loadScript(`https://static.hotjar.com/c/hotjar-${a.hotjarId}.js?sv=6`);
+  }
+  if (behavior && a.clarityId) {
+    // The tag script calls window.clarity() on its first line, so the queue
+    // stub from Microsoft's own snippet has to exist first — without it the
+    // bootstrap throws and Clarity records nothing at all.
+    const w = window as unknown as { clarity?: ClarityQueue };
+    if (!w.clarity) {
+      const queue: ClarityQueue = function (...args: unknown[]) {
+        (queue.q = queue.q ?? []).push(args);
+      };
+      w.clarity = queue;
+    }
+    loadScript(`https://www.clarity.ms/tag/${a.clarityId}`);
   }
 };
 

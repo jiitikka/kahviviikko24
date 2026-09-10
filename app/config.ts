@@ -13,11 +13,14 @@ export const SHOW_ADVANCED_FILTERS = false;
  * stays off, which is what keeps dev and branch previews out of the stats.
  */
 const hotjarId = process.env.NEXT_PUBLIC_HOTJAR_ID;
+const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID;
 
 export const ANALYTICS = {
   umamiSrc: process.env.NEXT_PUBLIC_UMAMI_SRC ?? null,
   umamiWebsiteId: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID ?? null,
-  // Digits only, so a misconfigured build variable cannot reshape the script
-  // URL it is interpolated into (see finding 3 in SECURITY-AUDIT.md).
+  // Restricted character sets, so a misconfigured build variable cannot
+  // reshape the script URL it is interpolated into (see finding 3 in
+  // SECURITY-AUDIT.md).
   hotjarId: hotjarId && /^\d+$/.test(hotjarId) ? hotjarId : null,
+  clarityId: clarityId && /^[a-z0-9]+$/i.test(clarityId) ? clarityId : null,
 };
