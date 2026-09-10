@@ -1,7 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-import Tabs from './ui/Tabs';
 import Button from './ui/Button';
 import { DAYS, type Event } from '@/app/data/events';
 import { CONTACT_EMAIL } from '@/app/data/content';
@@ -47,19 +45,23 @@ const EventCard = ({ event }: { event: Event }) => {
         {event.place}
       </a>
       <p className="m-0 text-[15px] leading-[1.6]">{event.desc}</p>
-      <div className="mt-2 flex flex-wrap items-center gap-2">
-        <span className="inline-block rounded-full border-rule border-coffee px-[10px] py-[3px] font-display text-[11px] font-medium uppercase tracking-[0.16em] text-coffee">
-          {event.badge}
-        </span>
-        {event.needsSignup && (
-          <span
-            className="inline-block rounded-full px-[10px] py-[3px] font-display text-[11px] font-medium uppercase tracking-[0.16em] text-coral-text"
-            style={{ border: '1.5px solid var(--coffee-coral-text)' }}
-          >
-            Ilmoittautuminen
-          </span>
-        )}
-      </div>
+      {(event.badge || event.needsSignup) && (
+        <div className="mt-2 flex flex-wrap items-center gap-2">
+          {event.badge && (
+            <span className="inline-block rounded-full border-rule border-coffee px-[10px] py-[3px] font-display text-[11px] font-medium uppercase tracking-[0.16em] text-coffee">
+              {event.badge}
+            </span>
+          )}
+          {event.needsSignup && (
+            <span
+              className="inline-block rounded-full px-[10px] py-[3px] font-display text-[11px] font-medium uppercase tracking-[0.16em] text-coral-text"
+              style={{ border: '1.5px solid var(--coffee-coral-text)' }}
+            >
+              Ilmoittautuminen
+            </span>
+          )}
+        </div>
+      )}
       {event.needsSignup && (
         <div className="mt-[2px] self-start">
           <Button
@@ -79,10 +81,10 @@ const EventCard = ({ event }: { event: Event }) => {
 };
 
 const Schedule = () => {
-  const dayKeys = Object.keys(DAYS);
-  const [activeDay, setActiveDay] = useState(dayKeys[0]);
-
-  const tabs = dayKeys.map((value) => ({ value, label: DAYS[value].label }));
+  // Every day's events in one row while the programme is small. The day
+  // grouping stays in the data so a tabbed view can come back when there is
+  // more to split — until then each card carries its own date.
+  const events = Object.values(DAYS).flatMap((day) => day.events);
 
   return (
     <section
@@ -92,12 +94,8 @@ const Schedule = () => {
       <span className="tkv-label">Kahviviikon ohjelma</span>
       <h2 className="tkv-h2 text-coffee">1.–11.10. kaupungilla tapahtuu</h2>
 
-      {tabs.length > 1 && (
-        <Tabs items={tabs} active={activeDay} onChange={setActiveDay} />
-      )}
-
       <div className="flex flex-wrap gap-5">
-        {DAYS[activeDay].events.map((event) => (
+        {events.map((event) => (
           <EventCard key={event.title} event={event} />
         ))}
       </div>
