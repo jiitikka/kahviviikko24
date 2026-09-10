@@ -13,17 +13,20 @@
 // and the fonts are self-hosted — so those origins are no longer allow-listed.
 const contentSecurityPolicy = [
   "default-src 'self'",
-  // Umami (statistics) and Hotjar (behaviour analytics), both consent-gated.
-  "script-src 'self' 'unsafe-inline' https://cloud.umami.is https://static.hotjar.com https://script.hotjar.com",
+  // Umami (statistics) plus Hotjar and Microsoft Clarity (behaviour
+  // analytics), all three consent-gated.
+  "script-src 'self' 'unsafe-inline' https://cloud.umami.is https://static.hotjar.com https://script.hotjar.com https://www.clarity.ms https://*.clarity.ms",
   // Tailwind, next/image and this site's inline style objects emit inline
   // style attributes. Fonts are self-hosted, so no third-party origin here.
   "style-src 'self' 'unsafe-inline'",
   // OpenStreetMap serves the Leaflet tiles for the Kahvilat map view.
-  "img-src 'self' data: blob: https://*.tile.openstreetmap.org https://*.hotjar.com",
+  "img-src 'self' data: blob: https://*.tile.openstreetmap.org https://*.hotjar.com https://*.clarity.ms",
   "font-src 'self' data:",
   // Umami serves its script from cloud.umami.is but posts events to
   // gateway.umami.is — omit the gateway and it silently collects nothing.
-  "connect-src 'self' https://cloud.umami.is https://gateway.umami.is https://*.hotjar.com https://*.hotjar.io wss://*.hotjar.com",
+  // Clarity beacons to per-region subdomains (c.clarity.ms, e.clarity.ms, …),
+  // so the wildcard is load-bearing, not tidiness.
+  "connect-src 'self' https://cloud.umami.is https://gateway.umami.is https://*.hotjar.com https://*.hotjar.io wss://*.hotjar.com https://*.clarity.ms",
   // Hotjar's helper frame. The site itself no longer embeds any iframe.
   "frame-src https://vars.hotjar.com",
   "object-src 'none'",

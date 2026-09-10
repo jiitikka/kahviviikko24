@@ -122,8 +122,8 @@ export default function Tietosuojaseloste() {
               seuraa kävijöitä sivustojen välillä. Palvelun tarjoaa Umami Cloud,
               ja tiedot säilytetään EU-alueella. Peruste: suostumus.
             </Card>
-            <Card title="Käytön analytiikka — Hotjar">
-              Tuottaa lämpökarttoja ja tallenteita siitä, miten sivustoa
+            <Card title="Käytön analytiikka — Hotjar ja Microsoft Clarity">
+              Tuottavat lämpökarttoja ja tallenteita siitä, miten sivustoa
               käytetään, jotta voimme korjata hankalia kohtia. Tekstikentät ja
               mahdolliset henkilötiedot peitetään tallenteissa. Peruste:
               suostumus.
@@ -140,10 +140,11 @@ export default function Tietosuojaseloste() {
           <p className={body}>
             Emme myy tai luovuta tietoja markkinointitarkoituksiin.
             Tilastoinnin osalta tietoja käsittelee puolestamme Umami. Käytön
-            analytiikan osalta tietoja käsittelee puolestamme Hotjar, joka voi
-            käsitellä niitä myös EU- ja ETA-alueen ulkopuolella; siirto
-            perustuu Euroopan komission vakiolausekkeisiin. Lisäksi tietoja
-            käsittelee sivuston tekninen ylläpitäjä.
+            analytiikan osalta tietoja käsittelevät puolestamme Hotjar ja
+            Microsoft Clarity, jotka voivat käsitellä niitä myös EU- ja
+            ETA-alueen ulkopuolella; siirto perustuu Euroopan komission
+            vakiolausekkeisiin. Lisäksi tietoja käsittelee sivuston tekninen
+            ylläpitäjä.
           </p>
         </section>
 
