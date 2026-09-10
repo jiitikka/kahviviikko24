@@ -88,8 +88,7 @@ export const CAFES: Cafe[] = [
     a11y: ['step', 'wc', 'space'],
     hours: [[8, 17], [8, 17], [8, 17], [8, 17], [8, 17], [9, 15], null],
     area: 'Lentolantie 2, Kangasala',
-    blurb:
-      'Kangasalan keskustan kahvila, joka pitää epäkantiskortin liikkeellä myös Tampereen ulkopuolella.',
+    blurb: 'Pieni tunnelmallinen kahvila Kangasalan Lentolassa.',
     site: 'https://www.facebook.com/royscafee',
   },
   {
@@ -262,7 +261,10 @@ export const CAFES: Cafe[] = [
     fill: '#ffffff',
     logo: '/logos/kattopuutarha.webp',
     district: 'Keskusta',
-    lat: 61.5011,
+    // Shares Satakunnankatu 18 A with Pala Cafe, so this sits ~45m north of
+    // the shared address — roughly its own entrance through Media 54, and
+    // enough that the two map markers stop covering each other.
+    lat: 61.5015,
     lng: 23.76102,
     a11y: ['step', 'wc', 'space'],
     hours: [null, [11, 20], [11, 20], [11, 22], [11, 23], [12, 23], [12, 18]],
