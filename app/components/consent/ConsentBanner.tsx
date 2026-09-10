@@ -171,10 +171,12 @@ const ConsentBanner = ({
         )}
 
         <div className="flex flex-wrap items-center gap-[10px]">
-          <Button variant="coral" onClick={onAcceptAll}>
+          {/* Equal weight on purpose: accepting must not be visually easier
+              than refusing. */}
+          <Button variant="primary" onClick={onAcceptAll}>
             Hyväksy kaikki
           </Button>
-          <Button variant="outline" onClick={onReject}>
+          <Button variant="primary" onClick={onReject}>
             Vain välttämättömät
           </Button>
           {settingsOpen ? (

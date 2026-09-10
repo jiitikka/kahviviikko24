@@ -71,6 +71,22 @@ export default function Tietosuojaseloste() {
         tabIndex={-1}
         className="tkv-gutter-narrow flex flex-col gap-[clamp(28px,4vw,40px)] pb-[clamp(56px,9vw,96px)] pt-[clamp(36px,7vw,72px)]"
       >
+        <nav
+          aria-label="Murupolku"
+          className="-mb-[clamp(14px,2vw,20px)] font-display text-[13px] font-bold"
+        >
+          <Link href="/" className="inline-flex items-center gap-[6px]">
+            <span aria-hidden="true">←</span>
+            Etusivu
+          </Link>
+          <span aria-hidden="true" className="mx-2 text-[var(--coffee-gray)]">
+            /
+          </span>
+          <span aria-current="page" className="text-[var(--coffee-gray)]">
+            Tietosuojaseloste
+          </span>
+        </nav>
+
         <div className="flex flex-col gap-[14px]">
           <span className="tkv-label">Tietosuoja</span>
           <h1 className="m-0 font-display text-[clamp(30px,6vw,44px)] font-extrabold leading-[1.08] tracking-[-0.03em] [text-wrap:pretty]">
