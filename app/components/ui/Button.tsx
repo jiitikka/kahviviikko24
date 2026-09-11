@@ -41,6 +41,8 @@ type Props = {
   disabled?: boolean;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   type?: 'button' | 'submit';
+  /** Renders an anchor instead, for actions that are really navigation. */
+  href?: string;
 };
 
 const Button = ({
@@ -50,31 +52,53 @@ const Button = ({
   disabled = false,
   onClick,
   type = 'button',
+  href,
 }: Props) => {
   const [hover, setHover] = React.useState(false);
+
+  const style: React.CSSProperties = {
+    fontFamily: 'var(--font-display)',
+    fontWeight: 700,
+    letterSpacing: '-0.01em',
+    borderRadius: 'var(--radius-sm)',
+    cursor: disabled ? 'default' : 'pointer',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    textDecoration: 'none',
+    transition: 'opacity .12s ease',
+    opacity: disabled ? 0.4 : hover ? 0.85 : 1,
+    ...variantStyles[variant],
+    ...sizeStyles[size],
+  };
+
+  const hoverProps = {
+    onMouseEnter: () => setHover(true),
+    onMouseLeave: () => setHover(false),
+  };
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener"
+        {...hoverProps}
+        style={style}
+      >
+        {children}
+      </a>
+    );
+  }
 
   return (
     <button
       type={type}
       disabled={disabled}
       onClick={onClick}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      style={{
-        fontFamily: 'var(--font-display)',
-        fontWeight: 700,
-        letterSpacing: '-0.01em',
-        borderRadius: 'var(--radius-sm)',
-        cursor: disabled ? 'default' : 'pointer',
-        display: 'inline-flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 8,
-        transition: 'opacity .12s ease',
-        opacity: disabled ? 0.4 : hover ? 0.85 : 1,
-        ...variantStyles[variant],
-        ...sizeStyles[size],
-      }}
+      {...hoverProps}
+      style={style}
     >
       {children}
     </button>
