@@ -44,15 +44,18 @@ const EventCard = ({ event }: { event: Event }) => {
         {event.place}
       </a>
       <p className="m-0 text-[15px] leading-[1.6]">{event.desc}</p>
+      {/* The two mt-[10px]s land on top of the gap-2 above, so both the pill
+          and the button sit 18px from what precedes them — the same as the
+          card's padding. */}
       {event.badge && (
-        <div className="mt-2 flex flex-wrap items-center gap-2">
+        <div className="mt-[10px] flex flex-wrap items-center gap-2">
           <span className="inline-block rounded-full border-rule border-coffee px-[10px] py-[3px] font-display text-[11px] font-medium uppercase tracking-[0.16em] text-coffee">
             {event.badge}
           </span>
         </div>
       )}
       {event.signupUrl && (
-        <div className="mt-[2px] self-start">
+        <div className="mt-[10px] self-start">
           <Button variant="coral" href={event.signupUrl}>
             {event.signupLabel ?? 'Ilmoittaudu'}
           </Button>
@@ -76,7 +79,7 @@ const Schedule = () => {
       <span className="tkv-label">Kahviviikon ohjelma</span>
       <h2 className="tkv-h2 text-coffee">1.–11.10. kaupungilla tapahtuu</h2>
 
-      <div className="flex flex-wrap gap-5">
+      <div className="flex flex-wrap items-start gap-5">
         {events.map((event) => (
           <EventCard key={event.title} event={event} />
         ))}
