@@ -34,6 +34,19 @@ export const DAYS: Record<string, Day> = {
       },
     ],
   },
+  la: {
+    label: 'La 3.10',
+    events: [
+      {
+        time: 'Lauantai 3.10. klo 11–16',
+        title: 'Kahwe x Pispala Clothing -t-paidan julkkarit',
+        // No street address to hand yet, so the map link searches for the
+        // roastery by name. Swap in the address once it is confirmed.
+        place: 'Kahwe Roastery, Tampere',
+        desc: 'Kahwe ja Pispala Clothing julkistavat yhteistyöpaitansa aamukahvien merkeissä. Lisätietoja seuraa lähempänä tapahtumaa.',
+      },
+    ],
+  },
   ke: {
     label: 'Ke 7.10',
     events: [
