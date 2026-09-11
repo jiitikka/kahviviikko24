@@ -34,6 +34,16 @@ const variantStyles: Record<Variant, React.CSSProperties> = {
   },
 };
 
+// A disabled button drops its variant's colours entirely. Fading the coral
+// fill to 40% left the label too faint to read, and there is only ever one
+// thing being said — this cannot be used — so it should look the same
+// whichever variant asked for it. Grey on cream clears 4.9:1.
+const disabledStyle: React.CSSProperties = {
+  background: 'transparent',
+  color: 'var(--coffee-gray)',
+  border: '1.5px solid var(--coffee-gray-line)',
+};
+
 type Props = {
   children: React.ReactNode;
   variant?: Variant;
@@ -68,9 +78,10 @@ const Button = ({
     gap: 8,
     textDecoration: 'none',
     transition: 'opacity .12s ease',
-    opacity: disabled ? 0.4 : hover ? 0.85 : 1,
+    opacity: !disabled && hover ? 0.85 : 1,
     ...variantStyles[variant],
     ...sizeStyles[size],
+    ...(disabled ? disabledStyle : null),
   };
 
   const hoverProps = {
@@ -78,7 +89,10 @@ const Button = ({
     onMouseLeave: () => setHover(false),
   };
 
-  if (href) {
+  // A disabled link is a contradiction: there is no way to stop an anchor
+  // being followed short of dropping the href, so render the real button and
+  // let it carry the disabled state.
+  if (href && !disabled) {
     return (
       <a
         href={href}

@@ -9,6 +9,12 @@ export type Event = {
   /** Where to sign up, if the event takes registrations. */
   signupUrl?: string;
   signupLabel?: string;
+  /**
+   * ISO instant after which the signup button goes dead. Include the offset —
+   * it is compared against the visitor's clock, which is rarely Finnish.
+   * Omit to leave registration open indefinitely.
+   */
+  signupClosesAt?: string;
 };
 
 export type Day = {
@@ -60,6 +66,9 @@ export const DAYS: Record<string, Day> = {
         signupUrl:
           'https://docs.google.com/forms/d/e/1FAIpQLSfctSmO4k-hNSFEAT97ZwhzIwUCNCiZafbrX3Gy7V67_5DZFQ/viewform',
         signupLabel: 'Ilmoittaudu kilpailuun',
+        // Closes when the competition starts. +03:00 is Finnish summer time,
+        // which still holds on 7.10. — DST ends on the 25th.
+        signupClosesAt: '2026-10-07T18:00:00+03:00',
       },
     ],
   },
