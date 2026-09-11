@@ -40,9 +40,10 @@ export const DAYS: Record<string, Day> = {
       {
         time: 'Lauantai 3.10. klo 11–16',
         title: 'Kahwe x Pispala Clothing -t-paidan julkkarit',
-        // No street address to hand yet, so the map link searches for the
-        // roastery by name. Swap in the address once it is confirmed.
-        place: 'Kahwe Roastery, Tampere',
+        // The roastery's own address. Still unconfirmed as the venue — if the
+        // launch turns out to be somewhere else, this is the line to change,
+        // because the map link is built from it.
+        place: 'Kahwe Roastery, Hatanpään valtatie 40 D 1, Tampere',
         desc: 'Kahwe ja Pispala Clothing julkistavat yhteistyöpaitansa aamukahvien merkeissä. Lisätietoja seuraa lähempänä tapahtumaa.',
       },
     ],
