@@ -13,7 +13,7 @@ export const FAQS = [
   },
   {
     q: 'Kuka järjestää kahviviikon?',
-    a: 'Vapaaehtoisten tiimi Pirkanmaan erikoiskahviyhdistys PErKY ry:n taustalla. Mukana myös pirkanmaalaiset pienpaahtimot Kahwe, Pirkanmaan Paahtimo, Mokkamestarit ja Siemasu.',
+    a: 'Vapaaehtoisten tiimi Pirkanmaan erikoiskahviyhdistys PErKY ry:n taustalla. Mukana myös pirkanmaalaiset pienpaahtimot Kahwe, Pirkanmaan paahtimo, Mokkamestarit ja Siemasu.',
   },
 ];
 
@@ -32,8 +32,9 @@ export const PARTNERS = [
   { name: 'Kahwe Roastery', url: 'https://www.kahwe.fi', logo: '/logos/kahwe.webp', ratio: 400 / 229, h: 56 },
   { name: 'Mokkamestarit', url: 'https://www.mokkamestarit.fi', logo: '/logos/mokkamestarit.webp', ratio: 1, h: 64 },
   { name: 'Pikkupaahtimo PIPA', url: 'https://pikkupaahtimopipa.fi/', logo: '/logos/pipa.webp', ratio: 1, h: 64 },
-  { name: 'Pirkanmaan Paahtimo', url: 'https://pirkanmaanpaahtimo.fi', logo: '/logos/pirkanmaan-paahtimo.webp', ratio: 135 / 160, h: 62 },
+  { name: 'Pirkanmaan paahtimo', url: 'https://pirkanmaanpaahtimo.fi', logo: '/logos/pirkanmaan-paahtimo.webp', ratio: 135 / 160, h: 62 },
   { name: 'Siemasu Coffee Roastery', url: 'https://www.siemasu.coffee', logo: '/logos/siemasu.webp', ratio: 400 / 138, h: 46 },
+  { name: 'Kaffekaveri', url: 'https://kaffekaveri.fi/', logo: '/logos/kaffekaveri.webp', ratio: 600 / 97, h: 24 },
 ];
 
 export const PERKY_FACTS = [

@@ -35,7 +35,7 @@ export const DAYS: Record<string, Day> = {
         time: 'Torstai 1.10. klo 11–13',
         title: 'Kahvipäivä: julkinen maistatus Ratinan kauppakeskuksessa',
         place: 'Ratinan tapahtuma-aukio, Tampere',
-        desc: 'Kahviviikon avaus. Pirkanmaan pienpaahtimot — Kahwe, Mokkamestarit, Pikkupaahtimo Pipa, Pirkanmaan Paahtimo ja Siemasu — tarjoavat matalan kynnyksen maistiaisia ohikulkijoille.',
+        desc: 'Kahviviikon avaus. Pirkanmaan pienpaahtimot — Kahwe, Mokkamestarit, Pikkupaahtimo Pipa, Pirkanmaan paahtimo ja Siemasu — tarjoavat matalan kynnyksen maistiaisia ohikulkijoille.',
         badge: 'Vapaa pääsy',
       },
     ],
