@@ -1,7 +1,7 @@
 import { PARTNERS } from '@/app/data/content';
 
 const Partners = () => (
-  <section className="tkv-gutter flex flex-wrap items-center gap-x-[clamp(40px,6vw,88px)] gap-y-6 border-t-rule border-coffee bg-white py-[clamp(40px,8vw,56px)]">
+  <section className="tkv-gutter flex flex-wrap items-center gap-x-[clamp(32px,4vw,64px)] gap-y-6 border-t-rule border-coffee bg-white py-[clamp(40px,8vw,56px)]">
     <div className="flex min-w-[220px] shrink basis-[280px] grow-0 flex-col items-start gap-4">
       <span className="tkv-label">Yhteistyössä</span>
       <h2 className="tkv-h2 text-coffee">Kumppanit</h2>
