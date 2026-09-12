@@ -1,7 +1,33 @@
 'use client';
 
+import { useCallback, useSyncExternalStore } from 'react';
 import Button from './ui/Button';
 import { DAYS, type Event } from '@/app/data/events';
+
+/**
+ * Whether the instant `at` (ms, NaN for "never") has passed.
+ *
+ * The page is prerendered at build time, so the HTML can only ever carry the
+ * answer as of the build. useSyncExternalStore lets that value hydrate
+ * cleanly and then be corrected from the visitor's own clock, and the timer
+ * flips it live for anyone sitting on the page when the moment arrives.
+ */
+const useHasPassed = (at: number) => {
+  const subscribe = useCallback(
+    (onChange: () => void) => {
+      const ms = at - Date.now();
+      // setTimeout truncates past 2^31-1 ms and then fires straight away, so
+      // leave it unarmed until the deadline is inside ~24 days. NaN fails
+      // this comparison too, which is what "never" wants.
+      if (!(ms > 0) || ms > 2 ** 31 - 1) return () => {};
+      const id = window.setTimeout(onChange, ms);
+      return () => window.clearTimeout(id);
+    },
+    [at]
+  );
+  const snapshot = useCallback(() => Date.now() >= at, [at]);
+  return useSyncExternalStore(subscribe, snapshot, snapshot);
+};
 
 const PinIcon = () => (
   <svg
@@ -25,6 +51,9 @@ const EventCard = ({ event }: { event: Event }) => {
   const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     event.place
   )}`;
+  const signupClosed = useHasPassed(
+    event.signupClosesAt ? Date.parse(event.signupClosesAt) : NaN
+  );
 
   return (
     <div className="flex max-w-[320px] flex-1 basis-[280px] flex-col gap-2 overflow-hidden rounded-md border-rule border-coffee bg-cream p-[18px] font-body text-coffee">
@@ -56,8 +85,14 @@ const EventCard = ({ event }: { event: Event }) => {
       )}
       {event.signupUrl && (
         <div className="mt-[10px] self-start">
-          <Button variant="coral" href={event.signupUrl}>
-            {event.signupLabel ?? 'Ilmoittaudu'}
+          <Button
+            variant="coral"
+            href={event.signupUrl}
+            disabled={signupClosed}
+          >
+            {signupClosed
+              ? 'Ilmoittautuminen sulkeutunut'
+              : (event.signupLabel ?? 'Ilmoittaudu')}
           </Button>
         </div>
       )}
