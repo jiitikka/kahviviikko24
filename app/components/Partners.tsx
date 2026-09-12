@@ -4,14 +4,17 @@ const Partners = () => (
   <section className="tkv-gutter flex flex-wrap items-center gap-x-[clamp(40px,6vw,88px)] gap-y-6 border-t-rule border-coffee bg-white py-[clamp(40px,8vw,56px)]">
     <div className="flex min-w-[220px] shrink basis-[280px] grow-0 flex-col items-start gap-4">
       <span className="tkv-label">Yhteistyössä</span>
-      <h2 className="tkv-h2 text-coffee">Paahtimokumppanit</h2>
+      <h2 className="tkv-h2 text-coffee">Kumppanit</h2>
       <p className="m-0 max-w-[620px] font-body text-[16px] leading-[1.65] text-coffee">
-        Kahviviikon mahdollistavat viisi Tamperelaista pienpaahtimoa: Kahwe,
-        Mokkamestarit, Pikkupaahtimo Pipa, Pirkanmaan paahtimo ja Siemasu.
+        Kahviviikon mahdollistavat viisi tamperelaista pienpaahtimoa: Kahwe,
+        Mokkamestarit, Pikkupaahtimo Pipa, Pirkanmaan paahtimo ja Siemasu sekä
+        kahviklubi Kaffekaveri.
       </p>
     </div>
 
-    <div className="flex min-w-[260px] flex-1 basis-[420px] flex-wrap items-center justify-start gap-[clamp(24px,3.6vw,54px)] min-[820px]:justify-end">
+    {/* The gap was tuned when there were five logos; six no longer fit on one
+        desktop row without it coming in a little. */}
+    <div className="flex min-w-[260px] flex-1 basis-[420px] flex-wrap items-center justify-start gap-[clamp(20px,2.6vw,40px)] min-[820px]:justify-end">
       {PARTNERS.map((partner) => (
         <a
           key={partner.name}
