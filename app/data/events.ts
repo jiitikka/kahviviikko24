@@ -51,6 +51,7 @@ export const DAYS: Record<string, Day> = {
         // because the map link is built from it.
         place: 'Kahwe Roastery, Hatanpään valtatie 40 D 1, Tampere',
         desc: 'Kahwe ja Pispala Clothing julkistavat yhteistyöpaitansa aamukahvien merkeissä. Lisätietoja seuraa lähempänä tapahtumaa.',
+        badge: 'Vapaa pääsy',
       },
     ],
   },
